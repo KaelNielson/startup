@@ -11,4 +11,7 @@
   Git fetch then git status show if there are any pulls or pushes needed
 
 ## Startup Notes, thoughts, and ideas
-  Nothing here just yet
+  Possible Startup Options:
+    Fan Theory Sharing Website
+    Money Game/Economy Simulator(with fake money)
+    RPG party finder, similar to a dating site
