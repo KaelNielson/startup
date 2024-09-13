@@ -18,8 +18,8 @@
     **I'm going with the Economy Simulator**
 
 ###  Startup Specification Notes:
-    HTML -
-    CSS -
+    HTML - 3 pages, one for login, one for your own business, and one for leaderboard
+    CSS - Simple color usage, nothing distracting, green for good things, red for bad things, greys for normal things, empty space to feel less crowded.
     JavaScript/React -
     Web Service/API -
     Authentication -
