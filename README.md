@@ -13,7 +13,13 @@ Startup application for BYU CS260
 
 
 ### Features:
-
+    1. Secure user login with HTTPS
+    2. Options for pricing, sales, advertisement, security, products, and general business practice.
+    3. Options for how the user reacts to random events.
+    4. Options for employees and hiring practice.
+    5. Storage of the users account details, including their business choices and their in-game balance.
+    6. Inter-user comparisions, allowing users to see how their business is doing vs other users.
+    7. User search that allows users to search for other users by their username
 
 ### Technologies:
     HTML - 3 pages, one for login, one for your own business, and one for scoreboard
