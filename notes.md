@@ -15,7 +15,7 @@
     Fan Theory Sharing Website
     Money Game/Economy Simulator(with fake money)
     RPG party finder, similar to a dating site
-    **I'm going with the Economy Simulator**
+####    **I'm going with the Economy Simulator**
 
 ###  Startup Specification Notes:
     HTML - 3 pages, one for login, one for your own business, and one for leaderboard
