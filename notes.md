@@ -18,10 +18,9 @@
 ####    **I'm going with the Economy Simulator**
 
 ###  Startup Specification Notes:
-    HTML - 3 pages, one for login, one for your own business, and one for leaderboard
+    HTML - 3 pages, one for login, one for your own business, and one for scoreboard
     CSS - Simple color usage, nothing distracting, green for good things, red for bad things, greys for normal things, empty space to feel less crowded.
-    JavaScript/React -
-    Web Service/API -
-    Authentication -
-    Database Data -
-    WebSocket Data -
+    JavaScript/React - Randomized events affecting the simulated businesses. Different choices and actions by users would affect the percent chances of different events. 
+    Web Service/API - 
+    Data/Authentication - Store users, their choices, their business statistics and their simulated money.
+    WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
