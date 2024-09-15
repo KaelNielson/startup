@@ -10,6 +10,8 @@ Startup application for BYU CS260
     complicate it. Then, different users can compare and show off their business to each other.
 
 ### Design Diagrams:
+![IMG_20240914_183409270](https://github.com/user-attachments/assets/029cef02-2aff-4cf3-b549-6ec51f6a3621)
+![IMG_20240914_183416471](https://github.com/user-attachments/assets/ccab4cbc-0b25-4261-bdaf-05cd6f13afe8)
 
 
 ### Features:
