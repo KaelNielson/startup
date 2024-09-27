@@ -9,6 +9,9 @@
   Git push adds commits to the true repositories
   Git pull updates a local repository
   Git fetch then git status show if there are any pulls or pushes needed
+  Don't forget to use git add to prepare files for commits
+  The following code deploys the files: 
+"./deployFiles.sh -k ../random_project_tibits.pem -h nielsoneconomy.click -s startup"
 
 ## Startup Notes, thoughts, and ideas
 ###  Possible Startup Options:
@@ -24,3 +27,4 @@
     Web Service/API - Users could generate random business names using the Wordnik API. Calls would also be made to store player choices, retrieve random events, and retrieve scoreboard updates.
     Data/Authentication - Store users, their choices, their business statistics and their simulated money.
     WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
+
