@@ -35,3 +35,18 @@ User's business simulator HTML page:
     random events, and retrieve scoreboard updates.
       Data/Authentication - Store users, their choices, their business statistics and their simulated money.
       WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
+
+##HTML Deliverable:
+- [x] **HTML Pages** Three HTML pages, for the Login, Scoreboard, and actual game page
+- [x] **Links** Every page currently has links to every other page.
+- [x] **Text** There is literaly so much text in this thing. Less so on the login and scoreboard pages, but so 
+much on the game page. Text discussing money, employees, and most importantly, Events.
+- [x] **Images** Image of the Stonk Meme as part of the header to every page, to convey to focus and tone of the 
+game.
+- [x] **DB/Login** A place for both Login and Account Creation on the login page, where the user would first start. 
+The specs of the users business would be held in a database, and shown on the game page.
+- [x] **WebSocket** On the scoreboard page, users would be able to see some of the specs of other users in realtime.
+
+Note: While working through the HTML, it became apparent that some of my initial plans were a little ambitious. 
+Instead of having the user control every aspect of their business, I'm moving to focus more on the events and their 
+effects.
