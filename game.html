@@ -8,7 +8,7 @@
             <h1>Nielson's Economy</h1>
 
             <nav>
-                <menu>
+                <menu id="navigationMenu">
                     <li><a href="index.html">Login</a></li>
                     <li><a href="score.html">Scoreboard</a></li>
                     <li><a href="game.html">Play</a></li>
@@ -21,7 +21,7 @@
             <div>
                 <h1>Business Name: Best Business</h1>
             </div>
-            <div>
+            <div id="infoList">
                 <div>Balance: $2,735</div>
                 <div>Income Per Day: $70</div>
                 <div>Costs Per Day: $35</div>
@@ -29,10 +29,10 @@
                 <div>Employees: 1</div>
                 <div>Costumers Per Day: 10</div><br>
             </div>
-            <div>
+            <div id="mainEvent">
                 <p>Balance(in dollars)</p>
                 <p>3,000</p>
-                <svg width="175" height="175" viewBox="0 0 100 100">
+                <svg id="graph" width="175" height="175" viewBox="0 0 100 100">
                     <polyline points="0,0 0,100 100,100" style="fill:none;stroke:black;stroke-width: 1;"/>
                     <polyline points="0,100 25,75 50,85 75,75 99,25" style="fill:none;stroke:green;stroke-width:1"/>
                 </svg>
@@ -42,7 +42,7 @@
                 </p>
                 <p>Time(in months)</p>
             </div>
-            <div style="overflow-y:scroll">
+            <div id="eventHistory" style="overflow-y:scroll">
                 Event History:<br>
                 (3 min ago)Event "Theft!"<br>
                 You chose the option "More Security" which caused the effect(s):<br>
@@ -54,15 +54,15 @@
                 you chose the option "Accept" which caused the effect(s):<br>
                 (+1,643 balance)
             </div>
-            <div>
+            <div id="eventsQueue">
                 Pending Events:<br>
                 -- NONE --
             </div>
             <br><br>
-            <button>Restart/Delete Business</button>
-            <button>Are you sure?</button>
+            <button id="restartButton">Restart/Delete Business</button>
+            <button id="questioningButton">Are you sure?</button>
         </main>
-        <footer>
+        <footer id="infoFooter">
             <hr />
             <span class="text-reset">Kael Nielson</span>
             <br />
