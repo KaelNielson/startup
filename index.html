@@ -4,57 +4,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Kael's Startup</title>
 
+        <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"
+        >
+
         <link rel="stylesheet" href="login.css" />
 
-        <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-        crossorigin="anonymous"
-        />
     </head>
     <body>
-        <header>
-            <h1>Nielson's Economy</h1>
-
-            <nav>
-                <menu id="navigationMenu">
-                    <li><a href="index.html">Login</a></li>
-                    <li><a href="score.html">Scoreboard</a></li>
-                    <li><a href="game.html">Play</a></li>
-                    <!-- Add links as you create more html pages -->
-                </menu>
-            </nav>
-            <img id="stonkImage" width="200px" src="https://i.pinimg.com/736x/08/1d/42/081d42bee6b2145dd4afddcbf14553af.jpg" />
-            <hr />
-        </header>
-        <main>
-            <h1>Welcome to my Economy Sim</h1>
-            <form method="get" id="loginForm">
-                <div class="white_space"></div>
-                <div class="aq_box">
-                    Login:<br>
-                    <input type="text" placeholder="Enter Email or Username" /><br>
-                    <input type="text" placeholder="Enter Password" /><br>
-                    <button type="submit">Submit</button>
+        <div class="true_header">
+            <header>
+                <h1>Nielson's Economy</h1>
+                <div class="header_div">
+                    <nav>
+                        <menu id="navigationMenu">
+                            <li><a href="index.html">Login</a></li>
+                            <li><a href="score.html">Scoreboard</a></li>
+                            <li><a href="game.html">Play</a></li>
+                            <!-- Add links as you create more html pages -->
+                        </menu>
+                    </nav>
+                    <div class="white_space"></div>
+                    <div class="white_space"></div>
+                    <div class="white_space"></div>
+                    <img id="stonkImage" width="200px" src="https://i.pinimg.com/736x/08/1d/42/081d42bee6b2145dd4afddcbf14553af.jpg" />
                 </div>
-                <div >-- OR --</div>
-                <div class="aq_box">
-                    Sign Up:<br>
-                    <input type="text" placeholder="Enter Email" /><br>
-                    <input type="text" placeholder="Enter Username" /><br>
-                    <input type="text" placeholder="Enter Password" /><br>
-                    <input type="text" placeholder="Confirm Password" /><br>
-                    <button type="submit">Submit</button>
-                </div>
-                <div class="white_space"></div>
-            </form>
-        </main>
-        <footer id="infoFooter">
-            <hr />
-            <span class="text-reset">Kael Nielson</span>
-            <br />
-            <a href="https://github.com/KaelNielson/startup">Git Repository</a>
-        </footer>
+                <!-- <hr /> -->
+            </header>
+            <main>
+                <h1>Welcome to my Economy Sim</h1>
+                <form method="get" id="loginForm">
+                    <div class="white_space"></div>
+                    <div class="aq_box">
+                        Login:<br>
+                        <input class="aq_item" type="text" placeholder="Enter Email or Username" /><br>
+                        <input class="aq_item" type="text" placeholder="Enter Password" /><br>
+                        <button class="aq_item" type="submit">Submit</button>
+                    </div>
+                    <div class="lower_div">-- OR --</div>
+                    <div class="aq_box">
+                        Sign Up:<br>
+                        <input class="aq_item" type="text" placeholder="Enter Email" /><br>
+                        <input class="aq_item" type="text" placeholder="Enter Username" /><br>
+                        <input class="aq_item" type="text" placeholder="Enter Password" /><br>
+                        <input class="aq_item" type="text" placeholder="Confirm Password" /><br>
+                        <button class="aq_item" type="submit">Submit</button>
+                    </div>
+                    <div class="white_space"></div>
+                </form>
+            </main>
+            <footer id="infoFooter">
+                <!-- <hr /> -->
+                <span class="text-reset">Kael Nielson</span>
+                <br />
+                <a href="https://github.com/KaelNielson/startup">Git Repository</a>
+            </footer>
+        </div>
     </body>
 </html>

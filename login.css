@@ -1,3 +1,52 @@
+
+/* Section needed in every single one: */
+h1 {
+    text-align: center;
+}
+
+.header_div {
+    display: flex;
+    flex-direction: row;
+}
+
+.true_header {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display:flex;
+    flex: 1;
+    flex-direction: column; 
+    background-color: slategray;
+}
+
+body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+footer {
+    display:flex;
+    flex: 1;
+    flex-direction: column; 
+    background-color: slategray;
+    justify-content: center;
+    align-items: center;
+}
+
+/* img {
+    flex: 1;
+}
+
+nav {
+    flex: 1;
+} */
+
+
+/*section needed for this one*/
 form {
     display: flex;
     flex-direction: row;
@@ -5,13 +54,7 @@ form {
     justify-content: center;
 }
 
-/* main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
-div {
+.lower_div {
     flex: 2;
     text-align: center;
 }
@@ -20,15 +63,13 @@ input {
     width: 95%;
 }
 
-h1 {
-    text-align: center;
-}
-
 .aq_box {
     flex: 2;
-    width: 15%;
+    text-align: center;
     background-color: aquamarine;
+    border-radius: 25px
 }
+
 
 .white_space {
     flex: 1;
