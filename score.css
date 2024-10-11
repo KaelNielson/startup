@@ -35,11 +35,14 @@ footer {
 .links {
     display: flex;
     flex-direction: row;
-    color:aliceblue;
 }
 
 .white_space {
     flex: 1;
+}
+
+a:link {
+    color: aliceblue;
 }
 
 /*section needed for this one*/
