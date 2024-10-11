@@ -1,5 +1,5 @@
 
-/* Section needed in every single one: */
+/* Universal CSS */
 h1 {
     text-align: center;
 }
@@ -55,7 +55,7 @@ a:active {
     color: blue;
 }
 
-/*section needed for this one*/
+/*Page CSS*/
 form {
     display: flex;
     flex-direction: row;
