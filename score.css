@@ -40,9 +40,17 @@ footer {
 .white_space {
     flex: 1;
 }
-
-a:link {
+  
+a:visited {
     color: aliceblue;
+}
+  
+a:hover {
+    color: lightblue;
+}
+  
+a:active {
+    color: blue;
 }
 
 /*section needed for this one*/
