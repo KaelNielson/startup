@@ -55,6 +55,18 @@ a:active {
     color: blue;
 }
 
+@media (max-height: 500px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+    main {
+      flex: 1 100vh;
+    }
+  }
+
 /*Page CSS*/
 form {
     display: flex;
