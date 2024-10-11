@@ -15,7 +15,7 @@ header {
     display:flex;
     flex-direction: row; 
     background-color: slategray;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 main {
@@ -37,16 +37,12 @@ footer {
 .links {
     display: flex;
     flex-direction: row;
+    color:aliceblue;
 }
 
-/* img {
+.white_space {
     flex: 1;
 }
-
-nav {
-    flex: 1;
-} */
-
 
 /*section needed for this one*/
 form {
@@ -73,7 +69,5 @@ input {
 }
 
 
-.white_space {
-    flex: 1;
-}
+
 
