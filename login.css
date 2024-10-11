@@ -4,11 +4,6 @@ h1 {
     text-align: center;
 }
 
-.header_div {
-    display: flex;
-    flex-direction: row;
-}
-
 .true_body {
     display: flex;
     flex-direction: column;
@@ -16,9 +11,9 @@ h1 {
 }
 
 header {
-    display:flex;
     flex: 0 80px;
-    flex-direction: column; 
+    display:flex;
+    flex-direction: row; 
     background-color: slategray;
     justify-content: center;
 }
@@ -31,8 +26,8 @@ main {
 }
 
 footer {
-    display:flex;
     flex: 0 30px;
+    display:flex;
     flex-direction: column; 
     background-color: slategray;
     justify-content: center;
