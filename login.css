@@ -4,7 +4,7 @@ h1 {
     text-align: center;
 }
 
-.true_body {
+body {
     display: flex;
     flex-direction: column;
     height: 100vh;
