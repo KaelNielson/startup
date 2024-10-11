@@ -54,3 +54,35 @@ a:active {
 }
 
 /*Page CSS*/
+
+.rows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.items {
+    height: 50vh;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.time {
+    color:blueviolet;
+}
+
+.event {
+    color:firebrick;
+}
+
+.option {
+    color:goldenrod;
+}
+
+.good {
+    color: green;
+}
+
+.bad {
+    color: red
+}
