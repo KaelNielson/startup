@@ -1,0 +1,50 @@
+/* Section needed in every single one: */
+h1 {
+    text-align: center;
+}
+
+.true_body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    flex: 0 80px;
+    display:flex;
+    flex-direction: row; 
+    background-color: slategray;
+    justify-content: center;
+}
+
+main {
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer {
+    flex: 0 30px;
+    display:flex;
+    flex-direction: column; 
+    background-color: slategray;
+    justify-content: center;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+}
+
+/* img {
+    flex: 1;
+}
+
+nav {
+    flex: 1;
+} */
+
+
+/*section needed for this one*/
