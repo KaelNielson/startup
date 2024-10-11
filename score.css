@@ -54,3 +54,23 @@ a:active {
 }
 
 /*section needed for this one*/
+main {
+    align-items: center;
+}
+
+
+table {
+    width: 75vw
+}
+
+/* .t {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw
+}
+
+tr {
+    display: flex;
+    flex-direction: row;
+} */
