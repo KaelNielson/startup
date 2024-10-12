@@ -37,16 +37,28 @@ User's business simulator HTML page:
       WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
 
 ##HTML Deliverable:
-- [x] **HTML Pages** Three HTML pages, for the Login, Scoreboard, and actual game page
-- [x] **Links** Every page currently has links to every other page.
-- [x] **Text** There is literaly so much text in this thing. Less so on the login and scoreboard pages, but so 
+- [x] **HTML Pages** - Three HTML pages, for the Login, Scoreboard, and actual game page
+- [x] **Links** - Every page currently has links to every other page.
+- [x] **Text** - There is literaly so much text in this thing. Less so on the login and scoreboard pages, but so 
 much on the game page. Text discussing money, employees, and most importantly, Events.
-- [x] **Images** Image of the Stonk Meme as part of the header to every page, to convey to focus and tone of the 
+- [x] **Images** - Image of the Stonk Meme as part of the header to every page, to convey to focus and tone of the 
 game.
-- [x] **DB/Login** A place for both Login and Account Creation on the login page, where the user would first start. 
+- [x] **DB/Login** - A place for both Login and Account Creation on the login page, where the user would first start. 
 The specs of the users business would be held in a database, and shown on the game page.
-- [x] **WebSocket** On the scoreboard page, users would be able to see some of the specs of other users in realtime.
+- [x] **WebSocket** - On the scoreboard page, users would be able to see some of the specs of other users in realtime.
 
 Note: While working through the HTML, it became apparent that some of my initial plans were a little ambitious. 
 Instead of having the user control every aspect of their business, I'm moving to focus more on the events and their 
 effects.
+
+
+##CSS Deliverable:
+- [x] **Header/Footer/Main** - Headers and Footers colored apart from Main.
+- [x] **Navigation Elements** - Colored links in contrast of background. Added different colors for the link 
+normally, when it's moused over, and when its clicked.
+- [x] **Response to Window Size** - All the windows use flex to change to the size of the window. For the elements 
+that require a lot of text, they are outfited with scroll bars that react to the size of the screen as well.
+- [x] **Application Elements** - Used spacing and coloration to make a visually pleasing output.
+- [x] **Application Text** - Consistant fonts. Use of special coloration for text that represents important 
+information for the user.
+- [x] **Application Image** - Used CSS to relocate the image into a non-intrusive situation.
