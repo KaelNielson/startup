@@ -28,3 +28,5 @@
     Data/Authentication - Store users, their choices, their business statistics and their simulated money.
     WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
 
+##Midterm Notes:
+    

@@ -36,7 +36,7 @@ User's business simulator HTML page:
       Data/Authentication - Store users, their choices, their business statistics and their simulated money.
       WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
 
-##HTML Deliverable:
+## HTML Deliverable:
 - [x] **HTML Pages** - Three HTML pages, for the Login, Scoreboard, and actual game page
 - [x] **Links** - Every page currently has links to every other page.
 - [x] **Text** - There is literaly so much text in this thing. Less so on the login and scoreboard pages, but so 
@@ -52,7 +52,7 @@ Instead of having the user control every aspect of their business, I'm moving to
 effects.
 
 
-##CSS Deliverable:
+## CSS Deliverable:
 - [x] **Header/Footer/Main** - Headers and Footers colored apart from Main.
 - [x] **Navigation Elements** - Colored links in contrast of background. Added different colors for the link 
 normally, when it's moused over, and when its clicked.
