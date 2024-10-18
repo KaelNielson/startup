@@ -31,31 +31,45 @@
 ## Midterm Notes:
   Questions on the Review I was uncertain about:
     In the following code, what is the difference between the #title and .grid selector?
+
     	The "#" selector refers to an element's id, while the "." selector refers to an element's class.	
     In the following code, what is the difference between padding and margin?
+
     	Padding is the space between the element's content and the element's border. Margin is the space around the border.*
     What does the following code using map with an array output?
+
     	The map Array method applies a function to every item in the array.
     In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+
 	Content, Padding, Border, Margin.
     How do you declare the document type to be html?
+
 	<!DOCTYPE html>
     Javascript switch statments
+
 	Evaluate the switch statement once, then check its answer against the different cases. If none of the cases get it, got to default.
     Is it possible to add new properties to javascript objects?
+
     	Yes.    	
     Which of the following correctly describes JSON?
+
 	JSON stands for JavaScript Object Notation. It's used for data storage and delivery.
     What does the console command chmod, man, ssh, ps, wget?
+
     	chmod can change the permissions of a file or directory, man displays the manual, ssh stands for secure shell and provides connection between to machines, ps shows you information on any running processes, wget allows you to download files from the Internet.
     Which of the following is true when the -la parameter is specified for the ls console command?
+
     	-a shows hidden flies, -l shows additional information like file permissions and ownership.
     Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
+
     	The top level domain is .click, the root domain is bozo.click, and banana.fruit is the subdomain.
     Is a web certificate is necessary to use HTTPS?
+
     	Yes
     Can a DNS A record can point to an IP address or another A record.
+
 	A DNS can point to an IP address, but not another A record.
     Port 443, 80, 22 is reserved for which protocol?
+
 	Port 443 is the standard HTTPS Port for all the secured transactions. Port 80 is the default network port for web servers using HTTP. The 22 port is used for Secure Shell (SSH) communication and allows remote administration access to the VM.
 
