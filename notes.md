@@ -47,15 +47,15 @@
     Which of the following correctly describes JSON?
 	JSON stands for JavaScript Object Notation. It's used for data storage and delivery.
     What does the console command chmod, man, ssh, ps, wget?
-
+    	chmod can change the permissions of a file or directory, man displays the manual, ssh stands for secure shell and provides connection between to machines, ps shows you information on any running processes, wget allows you to download files from the Internet.
     Which of the following is true when the -la parameter is specified for the ls console command?
-
+    	-a shows hidden flies, -l shows additional information like file permissions and ownership.
     Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
-
-    Is a web certificate is necessary to use HTTPS.
-
+    	The top level domain is .click, the root domain is bozo.click, and banana.fruit is the subdomain.
+    Is a web certificate is necessary to use HTTPS?
+    	Yes
     Can a DNS A record can point to an IP address or another A record.
-
+	A DNS can point to an IP address, but not another A record.
     Port 443, 80, 22 is reserved for which protocol?
-
+	Port 443 is the standard HTTPS Port for all the secured transactions. Port 80 is the default network port for web servers using HTTP. The 22 port is used for Secure Shell (SSH) communication and allows remote administration access to the VM.
 
