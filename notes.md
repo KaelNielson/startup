@@ -28,42 +28,42 @@
     Data/Authentication - Store users, their choices, their business statistics and their simulated money.
     WebSocket Data - Users would be able to see other users and their businesses on the scoreboard
 
-##Midterm Notes:
-    Questions on the Review I was uncertain about:
-      In the following code, what is the difference between the #title and .grid selector?
+## Midterm Notes:
+  Questions on the Review I was uncertain about:
+    In the following code, what is the difference between the #title and .grid selector?
 	
-      In the following code, what is the difference between padding and margin?
-	*Padding is the space between the element's content and the element's border. Margin is the space around the border.*
-      What does the following padding CSS do?
+    In the following code, what is the difference between padding and margin?
+      Padding is the space between the element's content and the element's border. Margin is the space around the border.*
+    What does the following padding CSS do?
 
-      What does the following code using map with an array output?
+    What does the following code using map with an array output?
 
-      What does the following line of Javascript do using a # selector?
+    What does the following line of Javascript do using a # selector?
 
-      In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+    In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
 
-      How do you declare the document type to be html?
+    How do you declare the document type to be html?
 
-      Javascript switch statments
+    Javascript switch statments
 
-      What is the correct syntax for creating a javascript object?
+    What is the correct syntax for creating a javascript object?
 
-      Is it possible to add new properties to javascript objects?
+    Is it possible to add new properties to javascript objects?
 
-      Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
+    Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
 
-      Which of the following correctly describes JSON?
+    Which of the following correctly describes JSON?
 
-      What does the console command chmod, man, ssh, ps, wget?
+    What does the console command chmod, man, ssh, ps, wget?
 
-      Which of the following is true when the -la parameter is specified for the ls console command?
+    Which of the following is true when the -la parameter is specified for the ls console command?
 
-      Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
+    Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
 
-      Is a web certificate is necessary to use HTTPS.
+    Is a web certificate is necessary to use HTTPS.
 
-      Can a DNS A record can point to an IP address or another A record.
+    Can a DNS A record can point to an IP address or another A record.
 
-      Port 443, 80, 22 is reserved for which protocol?
+    Port 443, 80, 22 is reserved for which protocol?
 
 
