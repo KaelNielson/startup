@@ -31,29 +31,21 @@
 ## Midterm Notes:
   Questions on the Review I was uncertain about:
     In the following code, what is the difference between the #title and .grid selector?
-	
+    	The "#" selector refers to an element's id, while the "." selector refers to an element's class.	
     In the following code, what is the difference between padding and margin?
-      Padding is the space between the element's content and the element's border. Margin is the space around the border.*
-    What does the following padding CSS do?
-
+    	Padding is the space between the element's content and the element's border. Margin is the space around the border.*
     What does the following code using map with an array output?
-
-    What does the following line of Javascript do using a # selector?
-
+    	The map Array method applies a function to every item in the array.
     In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
-
+	Content, Padding, Border, Margin.
     How do you declare the document type to be html?
-
+	<!DOCTYPE html>
     Javascript switch statments
-
-    What is the correct syntax for creating a javascript object?
-
+	Evaluate the switch statement once, then check its answer against the different cases. If none of the cases get it, got to default.
     Is it possible to add new properties to javascript objects?
-
-    Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
-
+    	Yes.    	
     Which of the following correctly describes JSON?
-
+	JSON stands for JavaScript Object Notation. It's used for data storage and delivery.
     What does the console command chmod, man, ssh, ps, wget?
 
     Which of the following is true when the -la parameter is specified for the ls console command?
