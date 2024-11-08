@@ -73,3 +73,6 @@
 
 	Port 443 is the standard HTTPS Port for all the secured transactions. Port 80 is the default network port for web servers using HTTP. The 22 port is used for Secure Shell (SSH) communication and allows remote administration access to the VM.
 
+## Vite:
+
+  Command to make a new Vite file: npm create vite@latest {name} -- --template react
