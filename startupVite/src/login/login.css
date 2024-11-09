@@ -1,0 +1,23 @@
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lower_div {
+    flex: 2;
+    text-align: center;
+  }
+  
+  input {
+    width: 95%;
+  }
+  
+  .aq_box {
+    flex: 2;
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 25px
+  }
+  
