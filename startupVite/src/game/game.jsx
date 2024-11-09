@@ -21,14 +21,12 @@ export function Game() {
             <div id="mainEvent" className="items">
                 <p>Balance(dollars) over time(months):</p>
                 <p>3,000</p>
-                {/* <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
-                    <polyline points="0,0 0,150 150,150" style="fill:none;stroke:black;stroke-width: 1;"/>
-                    <polyline points="0,150 25,75 50,85 75,75 150,25" style="fill:none;stroke:green;stroke-width:1"/>
+                <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
+                    <polyline className='border-line' points="0,0 0,150 150,150"/>
+                    <polyline className='graph-line' points="0,150 25,75 50,85 75,75 150,25"/>
                 </svg>
-                <p>0&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    7
-                </p> */}
+                <p>07
+                </p>
             </div>
             <div id="eventHistory" className="items">
                 Event History:<br />

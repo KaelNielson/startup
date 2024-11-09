@@ -34,3 +34,15 @@
 .stat {
     color:darkviolet;
 }
+
+.border-line {
+    fill:none;
+    stroke: black;
+    stroke-width: 1;
+}
+
+.graph-line {
+    fill:none;
+    stroke: green;
+    stroke-width: 1;
+}
