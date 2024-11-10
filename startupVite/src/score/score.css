@@ -1,9 +1,35 @@
 
-main {
+.main{
     align-items: center;
 }
 
 
 table {
     width: 75vw
+}
+
+.largerSegments {
+    width: 20vw;
+}
+
+.smallerSegments {
+    width: 15vw;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+#searchDiv {
+    display: flex;
+    align-items: center;
+}
+
+#searchBar {
+    height: 20px;
+    color: black;
 }

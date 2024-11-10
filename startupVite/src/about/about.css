@@ -1,0 +1,7 @@
+.main {
+    overflow-y: scroll;
+    height: calc(100vh - 110px);
+    max-height: 100%;
+    max-width: 100%;
+    overflow-x: fit-content;
+}

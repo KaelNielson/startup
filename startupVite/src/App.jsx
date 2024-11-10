@@ -5,6 +5,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Game } from './game/game';
 import { Score } from './score/score';
+import {About } from './about/about';
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                     <ul><NavLink className='nav-link' to=''>Login</NavLink></ul>
                     <ul><NavLink className='nav-link' to='score'>Scoreboard</NavLink></ul>
                     <ul><NavLink className='nav-link' to='game'>Play</NavLink></ul>
+                    <ul><NavLink className='nav-link' to='about'>About</NavLink></ul>
                 </menu>
             </nav>
             <div className="white_space"></div>
@@ -32,6 +34,7 @@ function App() {
         <Route path='/' element={<Login />} exact />
         <Route path='/game' element={<Game />} />
         <Route path='/score' element={<Score />} />
+        <Route path='/about' element={<About />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <footer>

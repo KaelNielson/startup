@@ -1,53 +1,53 @@
 import React from 'react';
+import './score.css';
 
 export function Score() {
   return (
-    <main>
+    <main className='main'>
             <h1>Scoreboard:</h1>
             <div className="white_space"></div>
             <table id="scoreboard">
                 <tr>
-                    <th>  #  </th>
-                    <th>  Username  </th>
-                    <th>  Business Name  </th>
-                    <th>  Wealth  </th>
+                    <th className="smallerSegments">  #  </th>
+                    <th className="largerSegments">  Username  </th>
+                    <th className="largerSegments">  Business Name  </th>
+                    <th className="largerSegments">  Wealth  </th>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>SomeGuy</td>
-                    <td>Jumping Tangerines</td>
-                    <td>$7,000,000</td>
+                    <td className="smallerSegments">1</td>
+                    <td className="largerSegments">SomeGuy</td>
+                    <td className="largerSegments">Jumping Tangerines</td>
+                    <td className="largerSegments">$7,000,000</td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>AnotherGuy</td>
-                    <td>Triple Quarter</td>
-                    <td>$3,000,000</td>
+                    <td className="smallerSegments">2</td>
+                    <td className="largerSegments">AnotherGuy</td>
+                    <td className="largerSegments">Triple Quarter</td>
+                    <td className="largerSegments">$3,000,000</td>
                 </tr>
                 
                 <tr>
-                    <td>3</td>
-                    <td>LadyWord</td>
-                    <td>Petrified Brick</td>
-                    <td>$1,000,002</td>
+                    <td className="smallerSegments">3</td>
+                    <td className="largerSegments">LadyWord</td>
+                    <td className="largerSegments">Petrified Brick</td>
+                    <td className="largerSegments">$1,000,002</td>
                 </tr>
                 <tr>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
+                    <td className="smallerSegments">...</td>
+                    <td className="largerSegments">...</td>
+                    <td className="largerSegments">...</td>
+                    <td className="largerSegments">...</td>
                 </tr>
                 <tr>
-                    <td>25</td>
-                    <td>yourName</td>
-                    <td>Best Business</td>
-                    <td>$2,735</td>
+                    <td className="smallerSegments">25</td>
+                    <td className="largerSegments">yourName</td>
+                    <td className="largerSegments">Best Business</td>
+                    <td className="largerSegments">$2,735</td>
                 </tr>
             </table>
             <div className="white_space"></div>
             <div id="searchDiv">
-                &#128270
-                <input id="searchBar" type="text" placeholder="search users" />
+                <p id="emoji">&#128270;</p><input id="searchBar" type="text" placeholder="search users" />
             </div>
         </main>
   );

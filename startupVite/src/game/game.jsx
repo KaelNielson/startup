@@ -1,4 +1,5 @@
 import React from 'react';
+import "./game.css"
 
 export function Game() {
   return (
@@ -13,6 +14,7 @@ export function Game() {
                 <div>Income Per Day: <span className="stat">$70</span></div>
                 <div>Costs Per Day: <span className="stat">$35</span></div>
                 <div>Net Per Day: <span className="stat">$35</span></div>
+                <div>Average Wage: <span className="stat">$15</span></div>
                 <div>Employees: <span className="stat">1</span></div>
                 <div>Costumers Per Day: <span className="stat">10</span></div><br />
                 <button id="restartButton">Restart/Delete Business</button><br />
@@ -20,13 +22,13 @@ export function Game() {
             </div>
             <div id="mainEvent" className="items">
                 <p>Balance(dollars) over time(months):</p>
-                <p>3,000</p>
+                <div>3,000</div>
                 <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
                     <polyline className='border-line' points="0,0 0,150 150,150"/>
                     <polyline className='graph-line' points="0,150 25,75 50,85 75,75 150,25"/>
                 </svg>
-                <p>07
-                </p>
+                <div>0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;7
+                </div>
             </div>
             <div id="eventHistory" className="items">
                 Event History:<br />

@@ -1,23 +1,36 @@
+main {
+  color: black;
+  background-color: white;
+}
+
 form {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
   }
+
+button {
+  border-width: 2px;
+  border-color: black;
+  background-color: lightgrey;
+  color: black;
+  margin: 3px;
+}
   
-  .lower_div {
-    flex: 2;
-    text-align: center;
-  }
-  
-  input {
-    width: 95%;
-  }
-  
-  .aq_box {
-    flex: 2;
-    text-align: center;
-    background-color: aquamarine;
-    border-radius: 25px
-  }
-  
+.lower_div {
+  flex: 2;
+  text-align: center;
+}
+
+input {
+  width: 95%;
+  background-color: white;
+}
+
+.aq_box {
+  flex: 2;
+  text-align: center;
+  background-color: aquamarine;
+  border-radius: 25px
+}

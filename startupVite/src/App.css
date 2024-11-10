@@ -14,8 +14,10 @@ header {
   flex: 0 80px;
   display:flex;
   flex-direction: row; 
-  text-align: center;
+  /* text-align: center; */
+  align-content: start;
   background-color: slategray;
+  color: black
 }
 
 main {
@@ -67,27 +69,3 @@ a:active {
   }
 }
 
-/* login css */
-
-form {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.lower_div {
-  flex: 2;
-  text-align: center;
-}
-
-input {
-  width: 95%;
-}
-
-.aq_box {
-  flex: 2;
-  text-align: center;
-  background-color: aquamarine;
-  border-radius: 25px
-}

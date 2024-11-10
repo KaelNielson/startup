@@ -1,7 +1,7 @@
 .rows {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .items {
@@ -9,6 +9,9 @@
     max-height: 100%;
     overflow-y: scroll;
     background-color: azure;
+    scrollbar-color: grey lightgrey;
+    max-width: 25vw;
+    padding: 5px;
 }
 
 .time {
