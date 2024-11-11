@@ -3,6 +3,12 @@ h1 {
   text-align: center;
 }
 
+.name {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  align-self: center;
+}
+
 .body {
   display: flex;
   flex-direction: column;
@@ -14,8 +20,8 @@ header {
   height: 15vh;
   display:flex;
   flex-direction: row; 
-  align-content: start;
   background-color: slategray;
+  align-items: center;
   color: black
 }
 

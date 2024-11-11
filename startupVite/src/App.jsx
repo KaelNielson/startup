@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className = 'body'>
       <header>
-      <h1>Nielson's Economy</h1>
+      <h1 className = 'name'>Nielson's Economy</h1>
             <nav>
                 <menu id="navigationMenu" className="links">
                     {/* <ul><a href="index.html">Login</a></ul> */}
