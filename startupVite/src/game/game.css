@@ -18,6 +18,10 @@
     color:blueviolet;
 }
 
+input {
+    color: black;
+}
+
 .event {
     color:firebrick;
 }
@@ -48,4 +52,25 @@
     fill:none;
     stroke: green;
     stroke-width: 1;
+}
+
+#questioningButton {
+    display: none;
+}
+
+#nameInput {
+    width: 30vw;
+    height: 30px;
+}
+
+.nameButtons {
+    /* height: 20px; */
+    padding: 0em;
+}
+
+#makeDiv {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
 }
