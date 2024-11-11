@@ -1,7 +1,10 @@
 .main {
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
-    height: calc(100vh - 110px);
+    height: 75vh;
     max-height: 100%;
     max-width: 100%;
     overflow-x: fit-content;
+    justify-content: safe center;
 }

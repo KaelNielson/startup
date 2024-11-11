@@ -11,24 +11,23 @@ h1 {
 }
 
 header {
-  flex: 0 80px;
+  height: 15vh;
   display:flex;
   flex-direction: row; 
-  /* text-align: center; */
   align-content: start;
   background-color: slategray;
   color: black
 }
 
 main {
-  flex: 1 calc(100vh - 110px);
+  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 footer {
-  flex: 0 30px;
+  height: 10vh;
   display:flex;
   flex-direction: column; 
   background-color: slategray;

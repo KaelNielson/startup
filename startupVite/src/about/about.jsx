@@ -3,8 +3,7 @@ import './about.css'
 
 export function About() {
     return (
-        <main>
-        <div className='main'>
+        <main className='main'>
             <h1> How to play: </h1>
             <h2> Reading your stats: </h2>
             <p>You business consists of seven stats. Your balance represents how much money you 
@@ -26,7 +25,6 @@ export function About() {
             <p>Every event will have 2-4 decisions to choose from. You won't know ahead of time the exact 
                 effects of your decisions, but the results will show up in your event history on your 
                 business page. These results will immediately affect the next week of your business.</p>
-        </div>
         </main>
     )
 }
