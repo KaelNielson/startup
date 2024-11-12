@@ -83,6 +83,23 @@ input {
 
 .optionsDiv {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+}
+
+.eventRender {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 75vh;
+    max-height: 100%;
+    max-width: 100%;
+    overflow-x: fit-content;
+    justify-content: safe center;
+}
+
+.optionStyle {
+    border-color: black;
+    border-radius: 10px;
+    border-width: 5px;
 }

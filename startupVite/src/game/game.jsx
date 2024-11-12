@@ -46,13 +46,14 @@ class statList {
 export function Game() {
     const [exists, setExists] = React.useState(false);
     const [name, setName] = React.useState("")
-    const [stats, setStats] = React.useState(new statList(0, 0, 0, 0, 0, 0, 0))
+    let stats = new statList([0,0,0,0,0,0,0])
     const [weeks, setWeeks] = React.useState(0)
     const [months, setMonths] = React.useState(0)
     const [graphColor, setColor] = React.useState("good-graph-line")
     const [balances, setBalances] = React.useState([0])
     const [pendingEvents, setEvents] = React.useState([])
     const [points, setPoints] = React.useState("")
+    const [showingEvents, setShowing] = React.useState(false)
 
     class effect {
         constructor(target, amount) {
@@ -94,7 +95,7 @@ export function Game() {
     
         render() {
             return (
-                <div>{this.text}<button onClick={this.choose}>Accept</button></div>
+                <div className="optionStyle">{this.text}<br /><button onClick={this.choose}>Accept</button></div>
                 
             )
         }
@@ -105,10 +106,6 @@ export function Game() {
             this.name = name;
             this.text = text;
             this.options = options;
-            this.renderedOptions = []
-            for (let option in this.options) {
-                this.renderedOptions.push(this.options[option].render())
-            }
         }
     
         chooseOption(index) {
@@ -117,14 +114,26 @@ export function Game() {
     
         render() {
             return (
-                <>
+                <div className="eventRender">
+                    <h2>{this.name}</h2>
                     <p>
                         {this.text}
                     </p>
                     <div className = "optionsDiv">
-                    {this.renderedOptions}
+                    {this.options.map(op => 
+                        <span key={this.options.indexOf(op)}>{op.render()}</span>
+                    )}
                     </div>
-                </>
+                </div>
+            )
+        }
+
+        shorthand() {
+            return (
+                <div>
+                    {this.name}
+                    <button id="viewButton" onClick={showEvents}>View</button>
+                </div>
             )
         }
     }
@@ -146,6 +155,7 @@ export function Game() {
     function runAMonth() {
         setMonths(months + 1);
         balances.push(stats.balance)
+        //setpoints here
         if (balances[-2] <= balances[-1]) {
             setColor("good-graph-line")
         } else {
@@ -184,6 +194,14 @@ export function Game() {
         document.getElementById("nameInput").value = newName;
         return newName
     }
+
+    function showEvents() {
+        setShowing(true)
+    }
+
+    function unShowEvents() {
+        setShowing(false)
+    }
   
     async function createBusiness() {
         let v = document.getElementById("nameInput").value
@@ -194,61 +212,75 @@ export function Game() {
         } else {
             setName(v)
         }
-        setStats([0,0,0,0,0,0,0])
+        stats = [0,0,0,0,0,0,0]
         setExists(true)
+        let temp = [firstEvent]
+        setEvents(pendingEvents.concat(temp))
     }
 
     if (exists == true) {
-        return (
-            <main>
-                <div>
-                    <h1>Business Name: {name}</h1>
-                </div>
-                <div className="rows">
-                    <div id="infoList" className="items">
-                        Stats:
-                        <div>Balance: <span className="stat">${stats.balance}</span></div>
-                        <div>Income Per Day: <span className="stat">${stats.totalIncome}</span></div>
-                        <div>Costs Per Day: <span className="stat">${stats.totalCosts}</span></div>
-                        <div>Net Per Day: <span className="stat">${stats.net}</span></div>
-                        <div>Average Wage: <span className="stat">${stats.wage}</span></div>
-                        <div>Employees: <span className="stat">{stats.employees}</span></div>
-                        <div>Costumers Per Day: <span className="stat">{stats.customer}</span></div><br />
-                        <button id="restartButton" onClick={deleteBusiness}>Restart/Delete Business</button><br />
-                        <button id="questioningButton" onClick={stepTwo}>Are you sure?</button>
+        if (showingEvents == false) {
+            return (
+                <main>
+                    <div>
+                        <h1>Business Name: {name}</h1>
                     </div>
-                    <div id="mainEvent" className="items">
-                        <p>Balance(dollars) over time(months):</p>
-                        <div>3,000</div>
-                        <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
-                            <polyline className='border-line' points="0,0 0,150 150,150"/>
-                            <polyline className='good-graph-line' points="0,150 25,75 50,85 75,75 150,25"/>
-                        </svg>
-                        <div>0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;7
+                    <div className="rows">
+                        <div id="infoList" className="items">
+                            Stats:
+                            <div>Balance: <span className="stat">${stats.balance}</span></div>
+                            <div>Income Per Day: <span className="stat">${stats.totalIncome}</span></div>
+                            <div>Costs Per Day: <span className="stat">${stats.totalCosts}</span></div>
+                            <div>Net Per Day: <span className="stat">${stats.net}</span></div>
+                            <div>Average Wage: <span className="stat">${stats.wage}</span></div>
+                            <div>Employees: <span className="stat">{stats.employees}</span></div>
+                            <div>Costumers Per Day: <span className="stat">{stats.customer}</span></div><br />
+                            <button id="restartButton" onClick={deleteBusiness}>Restart/Delete Business</button><br />
+                            <button id="questioningButton" onClick={stepTwo}>Are you sure?</button>
+                        </div>
+                        <div id="mainEvent" className="items">
+                            <p>Balance(dollars) over time(months):</p>
+                            <div>3,000</div>
+                            <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
+                                <polyline className='border-line' points="0,0 0,150 150,150"/>
+                                <polyline className={graphColor} points="0,150 25,75 50,85 75,75 150,25"/>
+                            </svg>
+                            <div>0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;7
+                            </div>
+                        </div>
+                        <div id="eventHistory" className="items">
+                            Event History:<br />
+                            <div><span className="time">(3 min ago)</span> Event "<span className="event">Theft!</span>"</div>
+                            <div>You chose the option "<span className="option">More Security</span>" which caused the effect(s):</div>
+                            (<span className="bad">-1 employee</span>, <span className="good">-100 cost per day</span>, <span className="bad">-50 balance</span>)
+                            <div><span className="time">(4 hours ago)</span> Event "<span className="event">Lawsuit over Logo</span>"</div>
+                            <div>You chose the option "<span className="option">Settle</span>" which caused the effect(s):</div>
+                            (<span className="bad">-1,000 balance</span>)
+                            <div><span className="time">(3 days ago)</span> Event "<span className="event">Generous Gift</span>"</div>
+                            <div>you chose the option "<span className="option">Accept</span>" which caused the effect(s):</div>
+                            (<span className="good">+1,643 balance</span>)
+                        </div>
+                        <div id="eventsQueue" className="items">
+                            Pending Events:<br />
+                            You have <span>{pendingEvents.length}</span> event(s):
+                            {pendingEvents.map(ev =>
+                                <span key={pendingEvents.indexOf(ev)}>{ev.shorthand()}</span>
+                            )}
                         </div>
                     </div>
-                    <div id="eventHistory" className="items">
-                        Event History:<br />
-                        <div><span className="time">(3 min ago)</span> Event "<span className="event">Theft!</span>"</div>
-                        <div>You chose the option "<span className="option">More Security</span>" which caused the effect(s):</div>
-                        (<span className="bad">-1 employee</span>, <span className="good">-100 cost per day</span>, <span className="bad">-50 balance</span>)
-                        <div><span className="time">(4 hours ago)</span> Event "<span className="event">Lawsuit over Logo</span>"</div>
-                        <div>You chose the option "<span className="option">Settle</span>" which caused the effect(s):</div>
-                        (<span className="bad">-1,000 balance</span>)
-                        <div><span className="time">(3 days ago)</span> Event "<span className="event">Generous Gift</span>"</div>
-                        <div>you chose the option "<span className="option">Accept</span>" which caused the effect(s):</div>
-                        (<span className="good">+1,643 balance</span>)
+                </main>
+            );
+        } else {
+            return (
+                <main>
+                    <div>
+                        <h1>Business Name: {name}</h1>
                     </div>
-                    <div id="eventsQueue" className="items">
-                        Pending Events:<br />
-                        You have <div>{pendingEvents.length}</div> events.
-                        <a href="/event">
-                            <button id="viewButton" >View</button>
-                        </a>
-                    </div>
-                </div>
-            </main>
-        );
+                    {pendingEvents[0].render()} 
+                    <button onClick={unShowEvents}>Back</button>
+                </main>
+            )
+        }
     } else {
         return (
             <main>
