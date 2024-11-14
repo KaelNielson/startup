@@ -70,12 +70,12 @@ information for the user.
 - [x] **Bundled and Transpiled** - yep
 - [x] **Components** - Login, scoreboard, and game have mocks. Game nearly works.
 
-  -[x] **login** - The login or sign up button takes you to the next page.
+  - [x] **login** - The login or sign up button takes you to the next page.
 
-  -[x] **database** - Currently, the statistics of the business are held locally but not saved between refreshes.
+  - [x] **database** - Currently, the statistics of the business are held locally but not saved between refreshes.
 
-  -[x] **Websocket** - Currently, the scoreboard is just representory, not responsive.
+  - [x] **Websocket** - Currently, the scoreboard is just representory, not responsive.
 
-  -[x] **logic** - Can partially interact with the event objects.
+  - [x] **logic** - Can partially interact with the event objects.
 - [x] **Router** - Routing between login and scoreboard page
 - [x] **Hooks** - Many instances of useState in the game.jsx
