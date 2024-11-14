@@ -12,7 +12,7 @@ class statList {
         this.paying = paying;
         this.totalCosts = this.baseCosts + this.employees * this.wage;
         this.totalIncome = this.baseIncome + this.customer * this.paying;
-        this.net = this.income - this.costs;
+        this.net = this.totalIncome - this.totalCosts;
     }
 
     recalcNet() {
@@ -33,6 +33,7 @@ class statList {
     }
 
     fullRecalc() {
+        console.log("Hey there, little guy")
         this.recalcCosts()
         this.recalcIncome()
         this.recalcNet()
@@ -46,7 +47,7 @@ class statList {
 export function Game() {
     const [exists, setExists] = React.useState(false);
     const [name, setName] = React.useState("")
-    let stats = new statList([0,0,0,0,0,0,0])
+    let stats = new statList(0,0,0,0,0,0,0)
     const [weeks, setWeeks] = React.useState(0)
     const [months, setMonths] = React.useState(0)
     const [graphColor, setColor] = React.useState("good-graph-line")
@@ -59,7 +60,8 @@ export function Game() {
         constructor(target, amount) {
             this.target = target;
             this.amount = amount;
-            this.text = this.amount.toString() + this.target;
+            if (this.amount < 0) {this.text = this.amount.toString() + " " + this.target;}
+            else {this.text = "+" + this.amount.toString() + " " + this.target;}
             if ((this.target === "income") || (this.target === "costs") || (this.target === "customers")) {
                 this.text += " per day"
             }
@@ -81,6 +83,7 @@ export function Game() {
             } else if (this.target == "paying") {
                 stats.paying = stats.paying + this.amount;
             }
+            console.log(stats.balance)
             stats.fullRecalc()
         }
     }
@@ -196,6 +199,49 @@ export function Game() {
         }
     }
 
+    function Report({ev, op, time}) {
+        let printTime;
+        let elapsedSeconds = Date.now() - time/1000000
+        let elapsedMinutes = elapsedSeconds/60
+        let elapsedHours = elapsedMinutes/60
+        let elapsedDays = elapsedHours/24
+        let elapsedYears = elapsedDays/365
+        let allEffects = []
+        if (elapsedMinutes < 1) {printTime = "(Less than a minute ago)"}
+        else if (elapsedHours < 1) {printTime = "(" + elapsedMinutes + "minute(s) ago)"}
+        else if (elapsedDays < 1) {printTime = "(" + elapsedHours + "hour(s) ago)"}
+        else if (elapsedYears < 1) {printTime = "(" + elapsedYears + "year(s) ago)"}
+        for (let e in op.effects) {
+            
+            let goodOrBad = "bad"
+            if (op.effects[e].target == "costs") {
+                if (op.effects[e].amount < 0) {
+                    goodOrBad = "good";
+                }
+            } else {
+                if (op.effects[e].amount > 0) {
+                    goodOrBad = "good"
+                }
+            }
+            
+            allEffects.push(<span className={goodOrBad}>{op.effects[e].text}</span>)
+        }
+        return (
+            <>
+                <div><span className="time">{printTime}</span> Event "<span className="event">{ev.name}</span>"</div>
+                <div>You chose the option "<span className="option">{op.name}</span>" which caused the effect(s):</div>
+                ({allEffects.map( e => 
+                    <span key={allEffects.indexOf(e)}>{e}, </span>
+                )})
+            </>
+        )
+    }
+
+// Event History:<br />
+{/* <div><span className="time">(3 min ago)</span> Event "<span className="event">Theft!</span>"</div> */}
+{/* <div>You chose the option "<span className="option">More Security</span>" which caused the effect(s):</div> */}
+// (<span className="bad">-1 employee</span>, <span className="good">-100 cost per day</span>, <span className="bad">-50 balance</span>
+
     function deleteBusiness() {
         document.getElementById("restartButton").style.display = "none"
         document.getElementById("questioningButton").style.display = "block"
@@ -234,7 +280,7 @@ export function Game() {
         } else {
             setName(v)
         }
-        stats = new statList([0,0,0,0,0,0,0])
+        stats = new statList(0,0,0,0,0,0,0)
         setExists(true)
         let temp = [firstEvent]
         setEvents(pendingEvents.concat(temp))
@@ -273,15 +319,7 @@ export function Game() {
                         </div>
                         <div id="eventHistory" className="items">
                             Event History:<br />
-                            <div><span className="time">(3 min ago)</span> Event "<span className="event">Theft!</span>"</div>
-                            <div>You chose the option "<span className="option">More Security</span>" which caused the effect(s):</div>
-                            (<span className="bad">-1 employee</span>, <span className="good">-100 cost per day</span>, <span className="bad">-50 balance</span>)
-                            <div><span className="time">(4 hours ago)</span> Event "<span className="event">Lawsuit over Logo</span>"</div>
-                            <div>You chose the option "<span className="option">Settle</span>" which caused the effect(s):</div>
-                            (<span className="bad">-1,000 balance</span>)
-                            <div><span className="time">(3 days ago)</span> Event "<span className="event">Generous Gift</span>"</div>
-                            <div>you chose the option "<span className="option">Accept</span>" which caused the effect(s):</div>
-                            (<span className="good">+1,643 balance</span>)
+                            <Report ev={firstEvent} op={op1} time={Date.now()} />
                         </div>
                         <div id="eventsQueue" className="items">
                             Pending Events:<br />

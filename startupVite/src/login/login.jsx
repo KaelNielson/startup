@@ -6,7 +6,7 @@ export function Login() {
     <main>
         <h1>Welcome to my Economy Sim</h1>
           <div className="white_space"></div>
-          <form method="get" id="loginForm" action="score.html">
+          <form method="get" id="loginForm" action="score">
               <div className="white_space"></div>
               <div className="aq_box">
                   Login:<br />
