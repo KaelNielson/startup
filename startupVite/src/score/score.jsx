@@ -2,8 +2,30 @@ import React from 'react';
 import './score.css';
 
 export function Score() {
-  return (
-    <main className='main'>
+    class row {
+        constructor(placing, name, busName, balance) {
+            this.placing = placing
+            this.name = name
+            this.busName = busName
+            this.balance = balance
+        }
+
+        render(){
+            return (
+                <tr>
+                    <td className="smallerSegments">{this.placing}</td>
+                    <td className="largerSegments">{this.name}</td>
+                    <td className="largerSegments">{this.busName}</td>
+                    <td className="largerSegments">{this.balance}</td>
+                </tr>
+            )
+        }
+    }
+
+    top1 = row(1, "SomeGuy", "Jumping Tangerines", "$7,000,000")
+
+    return (
+        <main className='main'>
             <h1>Scoreboard:</h1>
             <div className="white_space"></div>
             <table id="scoreboard">
@@ -50,5 +72,5 @@ export function Score() {
                 <p id="emoji">&#128270;</p><input id="searchBar" type="text" placeholder="search users" />
             </div>
         </main>
-  );
+    );
 }

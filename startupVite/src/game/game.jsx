@@ -1,5 +1,10 @@
 import React from 'react';
 import "./game.css"
+import { secretKey } from "./apiCall.jsx"
+
+function capitalize(string) {
+    return string[0].toUpperCase() + string.slice(1)
+}
 
 class statList {
     constructor(balance, baseIncome, baseCosts, wage, employees, customer, paying) {
@@ -251,23 +256,31 @@ export function Game() {
         return setExists(false)
     }
 
-    function createName() {
-        let r = Math.random()
+    function waitingForName() {
+        document.getElementById("nameInput").value = "Loading..."
+        createName()
+    }
+
+    async function createName() {
         let newName = ""
-        let testName;
-        // fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=adjective&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key={YOURAPIKEY}") //But how to use key?
-        // .then((response) => response.json())
-        // .then((data) => {
-        //     testName = data;
-        // })
-        // .catch();
-        // console.log(testName)
-        if (r < 0.5) {
-            newName = "Best Business"
-        } else {
-            newName = "Worst Business"
-        }
-        document.getElementById("nameInput").value = newName;
+        //adjective
+        await fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=adjective&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + secretKey) //But how to use key?
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            newName += capitalize(data.word);
+        })
+        .catch();
+        newName += " ";
+        //noun
+        await fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + secretKey)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            newName += capitalize(data.word);
+        })
+        .catch();
+        document.getElementById("nameInput").value = newName
         return newName
     }
 
@@ -284,14 +297,14 @@ export function Game() {
         
         
         if (v === "") {
-            setName(createName());
+            document.getElementById("nameInput").value = "You need a business name first."
         } else {
             setName(v)
+            stats = new statList(0,0,0,0,0,0,0)
+            setExists(true)
+            let temp = [firstEvent]
+            setEvents(pendingEvents.concat(temp))
         }
-        stats = new statList(0,0,0,0,0,0,0)
-        setExists(true)
-        let temp = [firstEvent]
-        setEvents(pendingEvents.concat(temp))
     }
 
     if (exists == true) {
@@ -355,7 +368,7 @@ export function Game() {
             <main>
                 <div id="makeDiv">
                 <input id="nameInput" type="text" placeholder="Name your business"></input>
-                <button className="nameButtons" onClick={createName}>Random Name</button>
+                <button className="nameButtons" onClick={waitingForName}>Random Name</button>
                 <button className="nameButtons" onClick={createBusiness}>Create Business</button>
                 </div>
             </main>
