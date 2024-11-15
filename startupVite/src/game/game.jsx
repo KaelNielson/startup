@@ -254,6 +254,14 @@ export function Game() {
     function createName() {
         let r = Math.random()
         let newName = ""
+        let testName;
+        // fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=adjective&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key={YOURAPIKEY}") //But how to use key?
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     testName = data;
+        // })
+        // .catch();
+        // console.log(testName)
         if (r < 0.5) {
             newName = "Best Business"
         } else {
