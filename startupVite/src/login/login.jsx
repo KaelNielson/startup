@@ -1,6 +1,20 @@
 import React from 'react';
 import './login.css'
 
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function MessageDialog(props) {
+    return (
+      <Modal {...props} show={props.message} centered>
+        <Modal.Body>{props.message}</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
 export function Login() {
     const [errorMsg, setError] = React.useState("")
 
@@ -19,21 +33,14 @@ export function Login() {
         }
     }
 
-    async function userStuff() {
-        if (document.getElementById("entEmailNew").value != "") {
-            await makeNewUser()
-        } else if (document.getElementById("entEmUs").value != "") {
-            await signInUser()
-        } else {
-            throwError("Please fill in one of the forms.")
-        }
-    }
-
     async function makeNewUser() {
         let e = document.getElementById("entEmailNew").value
         let n = document.getElementById("entNameNew").value
         let p1 = document.getElementById("entPass1").value
         let p2 = document.getElementById("entPass2").value
+        if ((e === "") || (n === "") || (p1 === "") || (p2 === "")) {
+            throwError("Please fill in the form")
+        }
         if (p1 != p2) {
             throwError("Your password's don't match")
         } else {
@@ -44,7 +51,12 @@ export function Login() {
     }
 
     async function signInUser() {
-        await login(ocument.getElementById("entEmUs").value, ocument.getElementById("entPass").value)
+        let u = document.getElementById("entEmUs").value
+        let p = document.getElementById("entPass").value
+        if ((u === "") || (p === "")) {
+            throwError("Please fill in the form")
+        }
+        await login(u, p)
     }
 
     async function login(nameOrEmail, password) {
@@ -82,29 +94,33 @@ export function Login() {
     }
 
     return (
+        <>
         <main>
             <h1>Welcome to my Economy Sim</h1>
-            <div className="white_space" id="errorMessage">{errorMsg}</div>
-            <form method="get" id="loginForm" onSubmit={userStuff}>
+            <div className="white_space"></div>\
+            <div className="form">
                 <div className="white_space"></div>
                 <div className="aq_box">
                     Login:<br />
                     <input type="text" placeholder="Enter Email or Username" id="entEmUs"/><br />
-                    <input type="text" placeholder="Enter Password" id="entPass"/><br />
-                    <button type="submit">Submit</button>
+                    <input type='password' placeholder="Enter Password" id="entPass"/><br />
+                    <button type="submit" onClick={signInUser}>Submit</button>
                 </div>
                 <div className="lower_div">-- OR --</div>
                 <div className="aq_box">
                     Sign Up:<br />
                     <input type="text" placeholder="Enter Email" id="entEmailNew" /><br />
                     <input type="text" placeholder="Enter Username" id="entNameNew"/><br />
-                    <input type="text" placeholder="Enter Password" id="entPass1"/><br />
-                    <input type="text" placeholder="Confirm Password" id="entPass2"/><br />
-                    <button type="submit">Submit</button>
+                    <input type='password' placeholder="Enter Password" id="entPass1"/><br />
+                    <input type='password' placeholder="Confirm Password" id="entPass2"/><br />
+                    <button type="submit" onClick={makeNewUser}>Submit</button>
                 </div>
                 <div className="white_space"></div>
-            </form>
+            </div>
             <div className="white_space"></div>
+
         </main>
+        <MessageDialog message={errorMsg} onHide={() => setError(null)} />
+        </>
     );
 }
