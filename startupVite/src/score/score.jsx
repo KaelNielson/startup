@@ -22,7 +22,7 @@ export function Score() {
         }
     }
 
-    top1 = row(1, "SomeGuy", "Jumping Tangerines", "$7,000,000")
+    let top1 = new row(1, "SomeGuy", "Jumping Tangerines", "$7,000,000")
 
     return (
         <main className='main'>
