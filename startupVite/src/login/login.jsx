@@ -40,8 +40,7 @@ export function Login() {
         let p2 = document.getElementById("entPass2").value
         if ((e === "") || (n === "") || (p1 === "") || (p2 === "")) {
             throwError("Please fill in the form")
-        }
-        if (p1 != p2) {
+        } else if (p1 != p2) {
             throwError("Your password's don't match")
         } else {
             let u = new User(n, e, p1)
@@ -60,7 +59,7 @@ export function Login() {
     }
 
     async function login(nameOrEmail, password) {
-        const endpoint = "auth/login"
+        const endpoint = "api/auth/login"
         const response = await fetch(endpoint, {
             method: 'post',
             body: { user:nameOrEmail, password: password },
@@ -77,7 +76,9 @@ export function Login() {
     }
 
     async function create(user) {
-        const endpoint = "auth/create"
+        console.log("Got to create")
+        const endpoint = "api/auth/create"
+        console.log("I'm guess it happens here")
         const response = await fetch(endpoint, {
             method: 'post',
             body: user,
@@ -85,6 +86,7 @@ export function Login() {
               'Content-type': 'application/json; charset=UTF-8',
             },
         });
+        console.log("Not here")
         if (response?.status === 200) {
             window.location.href = "/score"
         } else {

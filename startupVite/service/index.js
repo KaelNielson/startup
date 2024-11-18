@@ -14,6 +14,7 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
+    console.log("got to the apiRouter bit")
     for (let user in users) {
         if (users[user].name === req.body.name) {
             res.status(409).send({ msg: "Username already in use" })
@@ -26,3 +27,18 @@ apiRouter.post('/auth/create', async (req, res) => {
     users.push(user)
     res.send({ token: user.token });
     });
+
+apiRouter.post('/auth/login', async (req, res) => {
+    for (let user in users) {
+        if ((users[user].name === req.body.user ) || (users[user].email === req.body.user)) {
+            if (users[user].password === req.body.password) {
+                user.token = uuid.v4();
+                res.send({ token: user.token });
+                return;
+            } else {
+                res.status(401).send({ msg:"Incorrect Password" })
+            }
+        }
+    }
+    res.status(401).send({ msg:"User does not exist." })
+})
