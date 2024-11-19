@@ -10,6 +10,7 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
+
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
@@ -42,3 +43,12 @@ apiRouter.post('/auth/login', async (req, res) => {
     }
     res.status(401).send({ msg:"User does not exist." })
 })
+
+
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+  });
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
