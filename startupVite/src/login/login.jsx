@@ -81,7 +81,7 @@ export function Login() {
         console.log("I'm guess it happens here")
         const response = await fetch(endpoint, {
             method: 'post',
-            body: user,
+            body: JSON.stringify(user),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
