@@ -79,3 +79,11 @@ information for the user.
   - [x] **logic** - Can partially interact with the event objects.
 - [x] **Router** - Routing between login and scoreboard page
 - [x] **Hooks** - Many instances of useState in the game.jsx
+
+## Service Deliverable:
+- [x] **Node.js/Express HTTP service** - complete.
+- [x] **Static middleware for frontend** - complete.
+- [x] **Calls to third party endpoints** - Random Name button calls on the wordnik api.
+- [x] **Backend service endpoints** - barebones login system similar to the simon service
+- [x] **Frontend calls service endpoints** - Fetch calls in login
+In the near future, backend and frontend system will be created for scores as well.
