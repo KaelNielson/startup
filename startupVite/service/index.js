@@ -45,6 +45,17 @@ apiRouter.post('/auth/login', async (req, res) => {
 })
 
 
+// GetScores
+apiRouter.get('/scores', (_req, res) => {
+    res.send(scores);
+});
+    
+// SubmitScore
+apiRouter.post('/score', (req, res) => {
+    scores = updateScores(req.body, scores);
+    res.send(scores);
+});
+
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
   });

@@ -28,6 +28,14 @@ export function Score() {
 
     const [rows, setRows] = React.useState([top2, top1, top3, top4])
 
+React.useEffect(() => {
+    fetch('/api/scores')
+        .then((response) => response.json())
+        .then((scores) => {
+            setRows(scores);
+        });
+}, []);
+
     function balanceToNumber(balance) {
         return Number(balance.replaceAll(",", "").replace("$", ""))
     }
