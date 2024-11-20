@@ -22,27 +22,30 @@ class statList {
 
     recalcNet() {
         this.net = this.totalIncome - this.totalCosts;
+        return this
     }
 
     recalcCosts () {
         this.totalCosts = this.baseCosts + this.employees * this.wage;
+        return this
     }
 
     recalcIncome () {
         this.totalIncome = this.baseIncome + this.customer * this.paying;
+        return this
     }
 
-    dailyRecalc() {
-        this.recalcNet()
+    dailyRecalc(stChanger) {
+        stChanger(this.recalcNet())
         this.balance = this.balance + this.net;
+        return this
     }
 
-    fullRecalc() {
-        console.log("Hey there, little guy")
-        this.recalcCosts()
-        this.recalcIncome()
-        this.recalcNet()
-        this.dailyRecalc()
+    fullRecalc(stChanger) {
+        stChanger(this.recalcCosts())
+        stChanger(this.recalcIncome())
+        stChanger(this.recalcNet())
+        return this
     }
 
 }
@@ -52,7 +55,7 @@ class statList {
 export function Game() {
     const [exists, setExists] = React.useState(false);
     const [name, setName] = React.useState("")
-    let stats = new statList(0,0,0,0,0,0,0)
+    const [stats, setStats] = React.useState(new statList(0,0,0,0,0,0,0))
     const [weeks, setWeeks] = React.useState(0)
     const [months, setMonths] = React.useState(0)
     const [graphColor, setColor] = React.useState("good-graph-line")
@@ -60,6 +63,7 @@ export function Game() {
     const [pendingEvents, setEvents] = React.useState([])
     const [points, setPoints] = React.useState("")
     const [showingEvents, setShowing] = React.useState(false)
+    const [reports, setReports] = React.useState([])
 
     class effect {
         constructor(target, amount) {
@@ -88,8 +92,7 @@ export function Game() {
             } else if (this.target == "paying") {
                 stats.paying = stats.paying + this.amount;
             }
-            console.log(stats.balance)
-            stats.fullRecalc()
+            setStats(stats.fullRecalc(setStats))
         }
     }
     
@@ -104,20 +107,22 @@ export function Game() {
             return this.name
         }
     
-        choose() {
+        choose(ogEvent) {
             let ef = this.effects
+            let op = this
             function f () {
                 for (let effect in ef) {
                     ef[effect].activate();
                 }
                 setShowing(false)
+                ogEvent.chooseOption(op)
             }
             return f
         }
     
-        render() {
+        render(ogEvent) {
             return (
-                <div className="optionStyle">{this.text}<br /><button onClick={this.choose()}>Accept</button></div>
+                <div className="optionStyle">{this.text}<br /><button onClick={this.choose(ogEvent)}>Accept</button></div>
                 
             )
         }
@@ -130,8 +135,10 @@ export function Game() {
             this.options = options;
         }
     
-        chooseOption(index) {
-            this.options[index].choose()
+        chooseOption(op) {
+            setReports(reports.concat([(report(this, op, Date.now()))]))
+            setEvents(pendingEvents.splice(pendingEvents.indexOf(this), 1))
+            runAWeek()
         }
     
         render() {
@@ -143,7 +150,7 @@ export function Game() {
                     </p>
                     <div className = "optionsDiv">
                     {this.options.map(op => 
-                        <span key={this.options.indexOf(op)}>{op.render()}</span>
+                        <span key={this.options.indexOf(op)}>{op.render(this)}</span>
                     )}
                     </div>
                 </div>
@@ -196,7 +203,7 @@ export function Game() {
     function runAWeek() {
         setWeeks(weeks + 1)
         for (let i = 0; i < 7; i++) {
-            stats.dailyRecalc()
+            setStats(stats.dailyRecalc(setStats))
         }
         setBalances(balances + [stats.balance])
         if (weeks % 4 == 0) {
@@ -204,7 +211,7 @@ export function Game() {
         }
     }
 
-    function Report({ev, op, time}) {
+    function report(ev, op, time) {
         let printTime;
         let elapsedSeconds = Date.now() - time/1000000
         let elapsedMinutes = elapsedSeconds/60
@@ -267,7 +274,6 @@ export function Game() {
         await fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=adjective&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + secretKey) //But how to use key?
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             newName += capitalize(data.word);
         })
         .catch();
@@ -276,7 +282,6 @@ export function Game() {
         await fetch("https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + secretKey)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             newName += capitalize(data.word);
         })
         .catch();
@@ -300,7 +305,7 @@ export function Game() {
             document.getElementById("nameInput").value = "You need a business name first."
         } else {
             setName(v)
-            stats = new statList(0,0,0,0,0,0,0)
+            setStats(new statList(0,0,0,0,0,0,0))
             setExists(true)
             let temp = [firstEvent]
             setEvents(pendingEvents.concat(temp))
@@ -323,7 +328,8 @@ export function Game() {
                             <div>Net Per Day: <span className="stat">${stats.net}</span></div>
                             <div>Average Wage: <span className="stat">${stats.wage}</span></div>
                             <div>Employees: <span className="stat">{stats.employees}</span></div>
-                            <div>Costumers Per Day: <span className="stat">{stats.customer}</span></div><br />
+                            <div>Costumers Per Day: <span className="stat">{stats.customer}</span></div>
+                            <div>Dollars per Costumer: <span className="stat">${stats.paying}</span></div><br />
                             <button id="restartButton" onClick={deleteBusiness}>Restart/Delete Business</button><br />
                             <button id="questioningButton" onClick={stepTwo}>Are you sure?</button>
 
@@ -340,7 +346,7 @@ export function Game() {
                         </div>
                         <div id="eventHistory" className="items">
                             Event History:<br />
-                            <Report ev={firstEvent} op={op1} time={Date.now()} />
+                            {reports[0]}
                         </div>
                         <div id="eventsQueue" className="items">
                             Pending Events:<br />
