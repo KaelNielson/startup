@@ -103,3 +103,9 @@ input {
     border-radius: 10px;
     border-width: 5px;
 }
+
+.fullGraph {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

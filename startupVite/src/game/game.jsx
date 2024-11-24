@@ -57,13 +57,16 @@ export function Game() {
     const [name, setName] = React.useState("")
     const [stats, setStats] = React.useState(new statList(0,0,0,0,0,0,0))
     const [weeks, setWeeks] = React.useState(0)
-    const [months, setMonths] = React.useState(0)
     const [graphColor, setColor] = React.useState("good-graph-line")
     const [balances, setBalances] = React.useState([0])
     const [pendingEvents, setEvents] = React.useState([])
     const [points, setPoints] = React.useState("")
     const [showingEvents, setShowing] = React.useState(false)
     const [reports, setReports] = React.useState([])
+    const [highestCash, setHighestCash] = React.useState(1)
+    // const weeksRef = React.useRef(weeks)
+
+    // React.useEffect(() => {weeksRef.current = weeks}, [weeks])
 
     class effect {
         constructor(target, amount) {
@@ -139,6 +142,7 @@ export function Game() {
             setReports(reports.concat([(report(this, op, Date.now()))]))
             setEvents(pendingEvents.splice(pendingEvents.indexOf(this), 1))
             runAWeek()
+            
         }
     
         render() {
@@ -189,15 +193,13 @@ export function Game() {
     let firstEvent = new Event("Starting a business?", firstText, [op1, op2, op3, op4])
     let secondEvent = new Event("A stroke of luck?", secondText, [op5, op6])
 
-    function runAMonth() {
-        setMonths(months + 1);
-        balances.push(stats.balance)
-        //setpoints here
-        if (balances[-2] <= balances[-1]) {
-            setColor("good-graph-line")
-        } else {
-            setColor("bad-graph-line")
+    function definePoints(max) {
+        let allPoints = "0,150 "
+        // console.log(max)
+        for (let b = 1; b < balances.length; b++) {
+            allPoints += `${150/b},${150 - balances[b] * (150/max)} `
         }
+        return allPoints
     }
 
     function runAWeek() {
@@ -205,10 +207,20 @@ export function Game() {
         for (let i = 0; i < 7; i++) {
             setStats(stats.dailyRecalc(setStats))
         }
-        setBalances(balances + [stats.balance])
-        if (weeks % 4 == 0) {
-            runAMonth()
+        setBalances(balances.concat([stats.balance]))
+        console.log(balances)
+        if (balances[-1] < balances[-2]) {
+            setColor("bad-graph-line")
+        } else {
+            setColor("good-graph-line")
         }
+        console.log(stats.balance)
+        if (stats.balance > highestCash) {
+            setHighestCash(stats.balance)
+        } else if (stats.balance < -1*highestCash) {
+            setHighestCash(-1*stats.balance)
+        }
+        // wait(weeks)
     }
 
     function report(ev, op, time) {
@@ -249,18 +261,23 @@ export function Game() {
         )
     }
 
-// Event History:<br />
-{/* <div><span className="time">(3 min ago)</span> Event "<span className="event">Theft!</span>"</div> */}
-{/* <div>You chose the option "<span className="option">More Security</span>" which caused the effect(s):</div> */}
-// (<span className="bad">-1 employee</span>, <span className="good">-100 cost per day</span>, <span className="bad">-50 balance</span>
-
     function deleteBusiness() {
         document.getElementById("restartButton").style.display = "none"
         document.getElementById("questioningButton").style.display = "block"
     }
 
     function stepTwo() {
-        return setExists(false)
+        setExists(false)
+        setName("")
+        setStats(new statList(0,0,0,0,0,0,0))
+        setWeeks(0)
+        setColor("good-graph-line")
+        setBalances([0])
+        setEvents([])
+        setPoints("")
+        setShowing(false)
+        setReports([])
+        setHighestCash(1)
     }
 
     function waitingForName() {
@@ -335,14 +352,20 @@ export function Game() {
 
                         </div>
                         <div id="mainEvent" className="items">
-                            <p>Balance(dollars) over time(months):</p>
-                            <div>3,000</div>
-                            <svg id="graph" width="175" height="175" viewBox="0 0 150 150">
-                                <polyline className='border-line' points="0,0 0,150 150,150"/>
-                                <polyline className={graphColor} points="0,150 25,75 50,85 75,75 150,25"/>
-                            </svg>
-                            <div>0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;7
+                            <p>Balance(dollars) over time(weeks):</p>
+                            <div>{highestCash}</div>
+                            <div className="fullGraph">
+                                <span>0</span>
+                                <svg id="graph" width="175" height="150" viewBox="0 0 175 300">
+                                    <polyline className='border-line' points="0,0 0,150 175,150"/>
+                                    <polyline className="border-line" points="0,150 0,300"/>
+                                    <polyline className={graphColor} points={definePoints(highestCash)}/>
+                                </svg>
+                                <span>{weeks}</span>
                             </div>
+                            <div>{`-${highestCash}`}</div>
+                            {/* <div>0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{weeks}
+                            </div> */}
                         </div>
                         <div id="eventHistory" className="items">
                             Event History:<br />
