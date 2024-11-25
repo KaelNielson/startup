@@ -1,5 +1,5 @@
 {
-  "name": "service",
+  "name": "mongotest",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1",
-    "mongodb": "^6.11.0",
-    "uuid": "^11.0.3"
+    "mongodb": "^6.11.0"
   }
 }

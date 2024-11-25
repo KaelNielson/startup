@@ -25,3 +25,7 @@ dist-ssr
 
 #the file with a secret key
 src/game.apiCall.jsx
+
+#the file with the mongo key
+./service/dbConfig.json
+./mongoTest/dbConfig.json
