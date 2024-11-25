@@ -1,30 +1,41 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
-const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
+const authCookieName = 'token';
 
 let users = [];
 let scores = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-app.use(express.static('public'));
-
 app.use(express.json());
 
+app.use(cookieParser());
+
+app.use(express.static('public'));
+
+app.set('trust proxy', true);
 
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
-    const nameQuery = await users.find({name: req.body.name}).toArray()
-    const emailQuery = await users.find({email: req.body.email}).toArray()
-    if (nameQuery.length != 0) {
+    if (await getUserByName(req.body.name)) {
         res.status(409).send({ msg: "Username already in use" })
-    } else if (emailQuery.length != 0) {
-        res.status(409).send({ msg: "Account with that email already exists" })
+    } else if (await getUserByEmail(req.body.email)) {
+        res.status(409).send({ msg: "Email already in use" })
+    } else {
+        const user = await DB.createUser(req.body.name, req.body.email, req.body.password);
+
+        setAuthCookie(res, user.token);
+
+        res.send({
+            id: user._id,
+          });
     }
-    await users.insertOne(req.body)
     });
 
 apiRouter.post('/auth/login', async (req, res) => {
