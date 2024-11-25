@@ -36,58 +36,75 @@ apiRouter.post('/auth/create', async (req, res) => {
             id: user._id,
           });
     }
-    });
+});
 
 apiRouter.post('/auth/login', async (req, res) => {
-    const thisGuy = null
-    const nameQuery = await users.find({name: req.body.user}).toArray()
-    const emailQuery = await users.find({email: req.body.user}).toArray()
-    if (nameQuery.length != 0) {
-        const thisGuy = nameQuery[0]
-    } else if (emailQuery.length != 0) {
-        const thisGuy = emailQuery[0]
-    }
-    if (thisGuy != null) {
-        if (thisGuy.password == req.body.password) {
-
+    const userTry1 = await DB.getUserByName(req.body.user)
+    const userTry2 = await DB.getUserByEmail(req.body.user)
+    const actualUser = (userTry1 || userTry2)
+    if (actualUser) {
+        if (await bcrypt.compare(req.body.password, actualUser.password)) {
+            setAuthCookie(res, actualUser.token);
+            res.send({ id: actualUser._id });
+            return;
         } else {
-            res.status(401).send({ msg:"Incorrect Password" })
+            res.status(401).send({ msg:"Incorrect Password" }) 
         }
     } else {
         res.status(401).send({ msg:"User does not exist." })
     }
-    for (let user in users) {
-        if ((users[user].name === req.body.user ) || (users[user].email === req.body.user)) {
-            if (users[user].password === req.body.password) {
-                user.token = uuid.v4();
-                res.send({ token: user.token });
-                return;
-            } else {
-                res.status(401).send({ msg:"Incorrect Password" })
-            }
-        }
-    }
-    res.status(401).send({ msg:"User does not exist." })
 })
 
+apiRouter.delete('/auth/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+});
+
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+    const authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+});
 
 // GetScores
-apiRouter.get('/scores', (_req, res) => {
+secureApiRouter.get('/scores', async (req, res) => {
+    const scores = await DB.getHighScores();
     res.send(scores);
 });
     
 // SubmitScore
-apiRouter.post('/score', (req, res) => {
-    scores = updateScores(req.body, scores);
+secureApiRouter.post('/score', async (req, res) => {
+    const score = { ...req.body, ip: req.ip };
+    await DB.addScore(score);
+    const scores = await DB.getHighScores();
     res.send(scores);
+});
+
+app.use(function (err, req, res, next) {
+    res.status(500).send({ type: err.name, message: err.message });
 });
 
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
-    });
+});
 
-app.listen(port, () => {
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+}
+  
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-    });
-
+});
+  
 
