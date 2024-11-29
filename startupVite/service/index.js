@@ -23,9 +23,9 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
-    if (await getUserByName(req.body.name)) {
+    if (await DB.getUserByName(req.body.name)) {
         res.status(409).send({ msg: "Username already in use" })
-    } else if (await getUserByEmail(req.body.email)) {
+    } else if (await DB.getUserByEmail(req.body.email)) {
         res.status(409).send({ msg: "Email already in use" })
     } else {
         const user = await DB.createUser(req.body.name, req.body.email, req.body.password);
