@@ -45,7 +45,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (actualUser) {
         if (await bcrypt.compare(req.body.password, actualUser.password)) {
             setAuthCookie(res, actualUser.token);
-            res.send({ id: actualUser._id });
+            res.send({ id: actualUser._id, user:actualUser });
             return;
         } else {
             res.status(401).send({ msg:"Incorrect Password" }) 

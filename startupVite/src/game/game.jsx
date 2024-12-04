@@ -193,6 +193,10 @@ export function Game() {
     let firstEvent = new Event("Starting a business?", firstText, [op1, op2, op3, op4])
     let secondEvent = new Event("A stroke of luck?", secondText, [op5, op6])
 
+    async function updateScore() {
+        
+    }
+
     function definePoints(max) {
         let allPoints = "0,150 "
         // console.log(max)
@@ -335,6 +339,7 @@ export function Game() {
                 <main>
                     <div>
                         <h1>Business Name: {name}</h1>
+                        <h3>User: {localStorage.getItem('user').name}</h3>
                     </div>
                     <div className="rows">
                         <div id="infoList" className="items">

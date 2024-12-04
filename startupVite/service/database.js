@@ -36,6 +36,7 @@ async function createUser(name, email, password) {
     const user = {
         name: name,
         email: email,
+        business: null,
         password: passwordHash,
         token: uuid.v4(),
     };

@@ -11,6 +11,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null)
 
   return (
     <BrowserRouter>
@@ -32,7 +33,7 @@ function App() {
             <img id="stonkImage" width="150px" src="https://i.pinimg.com/736x/08/1d/42/081d42bee6b2145dd4afddcbf14553af.jpg" />
       </header>
       <Routes>
-        <Route path='/' element={<Login />} exact />
+        <Route path='/' element={<Login/>} exact />
         <Route path='/game' element={<Game />} />
         <Route path='/score' element={<Score />} />
         <Route path='/about' element={<About />} />

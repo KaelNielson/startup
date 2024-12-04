@@ -17,6 +17,7 @@ function MessageDialog(props) {
 
 export function Login() {
     const [errorMsg, setError] = React.useState("")
+    const [logged, setLog] = React.useState(false)
 
     function throwError(msg) {
         setError(msg)
@@ -24,11 +25,11 @@ export function Login() {
     }
 
     class User {
-        constructor (name, email, password) {
+        constructor (name, email, password, business=null) {
             this.name = name
             this.email = email
             this.password = password
-            this.business = null;
+            this.business = business;
             this.token = null;
         }
     }
@@ -67,18 +68,20 @@ export function Login() {
                 'Content-type': 'application/json; charset=UTF-8',
               },
         });
+        const body = await response.json();
         if (response?.status === 200) {
+            localStorage.setItem('user', body.user)
+            setLog(True)
             window.location.href = "/score"
         } else {
-            const body = await response.json();
             throwError(`⚠ Error: ${body.msg}`)
         }
     }
 
     async function create(user) {
-        console.log("Got to create")
+        // console.log("Got to create")
         const endpoint = "api/auth/create"
-        console.log("I'm guess it happens here")
+        // console.log("I'm guess it happens here")
         const response = await fetch(endpoint, {
             method: 'post',
             body: JSON.stringify(user),
@@ -86,8 +89,10 @@ export function Login() {
               'Content-type': 'application/json; charset=UTF-8',
             },
         });
-        console.log("Not here")
+        // console.log("Not here")
         if (response?.status === 200) {
+            localStorage.setItem('user', user)
+            setLog(True)
             window.location.href = "/score"
         } else {
             const body = await response.json();
@@ -95,34 +100,62 @@ export function Login() {
         }
     }
 
-    return (
-        <>
-        <main>
-            <h1>Welcome to my Economy Sim</h1>
-            <div className="white_space"></div>\
-            <div className="form">
-                <div className="white_space"></div>
-                <div className="aq_box">
-                    Login:<br />
-                    <input type="text" placeholder="Enter Email or Username" id="entEmUs"/><br />
-                    <input type='password' placeholder="Enter Password" id="entPass"/><br />
-                    <button type="submit" onClick={signInUser}>Submit</button>
-                </div>
-                <div className="lower_div">-- OR --</div>
-                <div className="aq_box">
-                    Sign Up:<br />
-                    <input type="text" placeholder="Enter Email" id="entEmailNew" /><br />
-                    <input type="text" placeholder="Enter Username" id="entNameNew"/><br />
-                    <input type='password' placeholder="Enter Password" id="entPass1"/><br />
-                    <input type='password' placeholder="Confirm Password" id="entPass2"/><br />
-                    <button type="submit" onClick={makeNewUser}>Submit</button>
-                </div>
-                <div className="white_space"></div>
-            </div>
-            <div className="white_space"></div>
+    async function logout() {
+        const response = await fetch("api/auth/logout", {
+            method: 'delete',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        // console.log("Reaches here")
+        localStorage.setItem('user', null)
+        setLog(false)
+        // console.log(localStorage.getItem('user'))
+    }
 
-        </main>
-        <MessageDialog message={errorMsg} onHide={() => setError(null)} />
-        </>
-    );
+    if (localStorage.getItem('user') === null) {
+        console.log("Need to log in")
+        return (
+            <>
+            <main>
+                <h1>Welcome to my Economy Sim</h1>
+                <div className="white_space"></div>
+                <div className="form">
+                    <div className="white_space"></div>
+                    <div className="aq_box">
+                        Login:<br />
+                        <input type="text" placeholder="Enter Email or Username" id="entEmUs"/><br />
+                        <input type='password' placeholder="Enter Password" id="entPass"/><br />
+                        <button type="submit" onClick={signInUser}>Submit</button>
+                    </div>
+                    <div className="lower_div">-- OR --</div>
+                    <div className="aq_box">
+                        Sign Up:<br />
+                        <input type="text" placeholder="Enter Email" id="entEmailNew" /><br />
+                        <input type="text" placeholder="Enter Username" id="entNameNew"/><br />
+                        <input type='password' placeholder="Enter Password" id="entPass1"/><br />
+                        <input type='password' placeholder="Confirm Password" id="entPass2"/><br />
+                        <button type="submit" onClick={makeNewUser}>Submit</button>
+                    </div>
+                    <div className="white_space"></div>
+                </div>
+                <div className="white_space"></div>
+    
+            </main>
+            <MessageDialog message={errorMsg} onHide={() => setError(null)} />
+            </>
+        );
+    } else {
+        console.log("Need to logout")
+        return (
+            <>
+            <main>
+                <h1>User: {localStorage.getItem('user').name}</h1>
+                <button onClick={logout}>Log Out</button>
+            </main>
+            <MessageDialog message={errorMsg} onHide={() => setError(null)} />
+            </>
+        )
+    }
+    
 }
