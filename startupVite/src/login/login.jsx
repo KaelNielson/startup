@@ -113,7 +113,7 @@ export function Login() {
         // console.log(localStorage.getItem('user'))
     }
 
-    if (localStorage.getItem('user') === null) {
+    if (localStorage.getItem('user') == null) {
         console.log("Need to log in")
         return (
             <>
@@ -150,7 +150,7 @@ export function Login() {
         return (
             <>
             <main>
-                <h1>User: {localStorage.getItem('user').name}</h1>
+                <h1>User: {localStorage.getItem('user')}</h1>
                 <button onClick={logout}>Log Out</button>
             </main>
             <MessageDialog message={errorMsg} onHide={() => setError(null)} />
