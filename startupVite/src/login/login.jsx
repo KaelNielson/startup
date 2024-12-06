@@ -63,7 +63,7 @@ export function Login() {
         const endpoint = "api/auth/login"
         const response = await fetch(endpoint, {
             method: 'post',
-            body: { user:nameOrEmail, password: password },
+            body: JSON.stringify({ user:nameOrEmail, password: password }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
