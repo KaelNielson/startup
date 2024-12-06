@@ -70,8 +70,8 @@ export function Login() {
         });
         const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem('user', body.user)
-            setLog(True)
+            localStorage.setItem('user', JSON.stringify(body.user))
+            setLog(true)
             window.location.href = "/score"
         } else {
             throwError(`⚠ Error: ${body.msg}`)
@@ -91,8 +91,8 @@ export function Login() {
         });
         // console.log("Not here")
         if (response?.status === 200) {
-            localStorage.setItem('user', user)
-            setLog(True)
+            localStorage.setItem('user', JSON.stringify(user))
+            setLog(true)
             window.location.href = "/score"
         } else {
             const body = await response.json();
@@ -108,12 +108,12 @@ export function Login() {
             }
         })
         // console.log("Reaches here")
-        localStorage.setItem('user', null)
+        localStorage.setItem('user', JSON.stringify(null))
         setLog(false)
         // console.log(localStorage.getItem('user'))
     }
 
-    if (localStorage.getItem('user') == null) {
+    if (JSON.parse(localStorage.getItem('user')) == null) {
         console.log("Need to log in")
         return (
             <>
@@ -150,7 +150,7 @@ export function Login() {
         return (
             <>
             <main>
-                <h1>User: {localStorage.getItem('user')}</h1>
+                <h1>User: {JSON.parse(localStorage.getItem('user')).name}</h1>
                 <button onClick={logout}>Log Out</button>
             </main>
             <MessageDialog message={errorMsg} onHide={() => setError(null)} />
