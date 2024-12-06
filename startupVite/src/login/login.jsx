@@ -66,7 +66,7 @@ export function Login() {
             body: { user:nameOrEmail, password: password },
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
-              },
+            },
         });
         const body = await response.json();
         if (response?.status === 200) {
@@ -79,9 +79,7 @@ export function Login() {
     }
 
     async function create(user) {
-        // console.log("Got to create")
         const endpoint = "api/auth/create"
-        // console.log("I'm guess it happens here")
         const response = await fetch(endpoint, {
             method: 'post',
             body: JSON.stringify(user),
@@ -89,7 +87,6 @@ export function Login() {
               'Content-type': 'application/json; charset=UTF-8',
             },
         });
-        // console.log("Not here")
         if (response?.status === 200) {
             localStorage.setItem('user', JSON.stringify(user))
             setLog(true)
@@ -107,14 +104,11 @@ export function Login() {
                 'Content-type': 'application/json; charset=UTF-8',
             }
         })
-        // console.log("Reaches here")
         localStorage.setItem('user', JSON.stringify(null))
         setLog(false)
-        // console.log(localStorage.getItem('user'))
     }
 
-    if (JSON.parse(localStorage.getItem('user')) == null) {
-        console.log("Need to log in")
+    if (JSON.parse(localStorage.getItem('user')) === null) {
         return (
             <>
             <main>
@@ -146,7 +140,6 @@ export function Login() {
             </>
         );
     } else {
-        console.log("Need to logout")
         return (
             <>
             <main>

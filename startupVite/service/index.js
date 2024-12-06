@@ -39,6 +39,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
+    console.log("Does it get here?")
     const userTry1 = await DB.getUserByName(req.body.user)
     const userTry2 = await DB.getUserByEmail(req.body.user)
     const actualUser = (userTry1 || userTry2)
