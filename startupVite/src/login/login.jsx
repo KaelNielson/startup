@@ -18,6 +18,12 @@ function MessageDialog(props) {
 export function Login() {
     const [errorMsg, setError] = React.useState("")
     const [logged, setLog] = React.useState(false)
+    const [user, setUserState] = React.useState(JSON.parse(localStorage.getItem('user')))
+
+    const setUser = (newUser) => {
+        setUserState(newUser)
+        localStorage.setItem('user', JSON.stringify(newUser))
+    }
 
     function throwError(msg) {
         setError(msg)
@@ -70,7 +76,7 @@ export function Login() {
         });
         const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem('user', JSON.stringify(body.user))
+            setUser(body.user)
             setLog(true)
             window.location.href = "/score"
         } else {
@@ -88,7 +94,7 @@ export function Login() {
             },
         });
         if (response?.status === 200) {
-            localStorage.setItem('user', JSON.stringify(user))
+            setUser(user)
             setLog(true)
             window.location.href = "/score"
         } else {
@@ -104,11 +110,13 @@ export function Login() {
                 'Content-type': 'application/json; charset=UTF-8',
             }
         })
+        setUser(null)
         localStorage.setItem('user', JSON.stringify(null))
+        // console.log(JSON.parse(localStorage.getItem('user')) === null)
         setLog(false)
     }
 
-    if (JSON.parse(localStorage.getItem('user')) === null) {
+    if (user === null) {
         return (
             <>
             <main>
@@ -133,7 +141,7 @@ export function Login() {
                     </div>
                     <div className="white_space"></div>
                 </div>
-                <div className="white_space"></div>
+                <div className="white_space">{logged}</div>
     
             </main>
             <MessageDialog message={errorMsg} onHide={() => setError(null)} />
@@ -143,7 +151,8 @@ export function Login() {
         return (
             <>
             <main>
-                <h1>User: {JSON.parse(localStorage.getItem('user')).name}</h1>
+                <h1>User: {user.name}</h1>
+                <div className="white_space">{logged}</div>
                 <button onClick={logout}>Log Out</button>
             </main>
             <MessageDialog message={errorMsg} onHide={() => setError(null)} />

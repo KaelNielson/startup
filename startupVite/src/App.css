@@ -48,6 +48,7 @@ footer {
 
 .white_space {
   flex: 1;
+  color: white;
 }
 
 a:visited {
