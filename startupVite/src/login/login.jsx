@@ -15,15 +15,11 @@ function MessageDialog(props) {
     );
   }
 
-export function Login() {
+export function Login(props) {
     const [errorMsg, setError] = React.useState("")
     const [logged, setLog] = React.useState(false)
-    const [user, setUserState] = React.useState(JSON.parse(localStorage.getItem('user')))
-
-    const setUser = (newUser) => {
-        setUserState(newUser)
-        localStorage.setItem('user', JSON.stringify(newUser))
-    }
+    const user = props.u
+    const setUser = props.uS
 
     function throwError(msg) {
         setError(msg)
@@ -117,6 +113,7 @@ export function Login() {
     }
 
     if (user === null) {
+        // console.log("is it null?")
         return (
             <>
             <main>
@@ -148,6 +145,7 @@ export function Login() {
             </>
         );
     } else {
+        // console.log(user)
         return (
             <>
             <main>
