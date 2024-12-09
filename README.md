@@ -87,3 +87,11 @@ information for the user.
 - [x] **Backend service endpoints** - barebones login system similar to the simon service
 - [x] **Frontend calls service endpoints** - Fetch calls in login
 In the near future, backend and frontend system will be created for scores as well.
+
+## Login/DB Deliverable:
+- [x] **Atlas Database created** - complete.
+- [x] **MongoDB Data Stored** - complete.
+- [x] **User registration** - Creation of user works now
+- [x] **Existing User** - Login a user works now
+- [x] **Credentials** - Users are saved in DB, scores are not yet, but will be soon.
+- [x] **Restrictions** - Can't access scoreboard and game until logged in.
