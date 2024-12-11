@@ -2,7 +2,7 @@ import React from 'react';
 import "./game.css"
 import { secretKey } from "./apiCall.jsx"
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
-// import { GameEvent, GameNotifier} from "../gameNotifier.js"
+import { GameEvent, GameNotifier} from "../gameNotifier.js"
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1)
@@ -55,6 +55,7 @@ class statList {
 
 
 export function Game(props) {
+
     const [exists, setExists] = React.useState(false);
     const [name, setName] = React.useState("")
     const [stats, setStats] = React.useState(new statList(0,0,0,0,0,0,0))
@@ -67,28 +68,6 @@ export function Game(props) {
     const user = props.u
     const setUser = props.uS
 
-    const [business, setBusinessState] = React.useState(JSON.parse(localStorage.getItem('business')))
-
-    const setBusiness = (newBusiness) => {
-        setBusinessState(newBusiness)
-        localStorage.setItem('business', JSON.stringify(newBusiness))
-    }
-    // const weeksRef = React.useRef(weeks)
-
-    // React.useEffect(() => {weeksRef.current = weeks}, [weeks])
-
-    class Business {
-        constructor(name, stats, weeks, balances, pendingEvents, reports, highestCash, user) {
-            this.user = user
-            this.name = name
-            this.stats = stats
-            this.weeks = weeks
-            this.balances = balances
-            this.pendingEvents = pendingEvents
-            this.reports = reports
-            this.highestCash = highestCash
-        }
-    }
     class row {
         constructor(name, busName, balance) {
             this.name = name

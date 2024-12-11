@@ -30,17 +30,17 @@ export function Score() {
     const [rows, setRows] = React.useState([top2, top1, top3, top4])
     const [events, setEvent] = React.useState([]);
 
-    // React.useEffect(() => {
-    //     GameNotifier.addHandler(handleGameEvent);
+    React.useEffect(() => {
+        GameNotifier.addHandler(handleGameEvent);
     
-    //     return () => {
-    //       GameNotifier.removeHandler(handleGameEvent);
-    //     };
-    // });
+        return () => {
+          GameNotifier.removeHandler(handleGameEvent);
+        };
+    });
 
-    // function handleGameEvent(event) {
-    //     setEvent([...events, event]);
-    // }
+    function handleGameEvent(event) {
+        setEvent([...events, event]);
+    }
 
     React.useEffect(() => {
         fetch('/api/scores')
@@ -50,27 +50,28 @@ export function Score() {
             });
     }, []);
 
-    // function createMessageArray() {
-    //     const messageArray = [];
-    //     for (const [i, event] of events.entries()) {
-    //         let message = 'unknown';
-    //         if (event.type === GameEvent.End) {
-    //             message = `deleted their business`;
-    //         } else if (event.type === GameEvent.Start) {
-    //             message = `started a business: ${event.value}`;
-    //         } else if (event.type === GameEvent.System) {
-    //             message = event.value;
-    //         }
+    function createMessageArray() {
+        const messageArray = [];
+        for (const [i, event] of events.entries()) {
+            let message = 'unknown';
+            if (event.type === GameEvent.End) {
+                message = `deleted their business`;
+            } else if (event.type === GameEvent.Start) {
+                message = `started a business: ${event.value}`;
+            } else if (event.type === GameEvent.System) {
+                message = event.value;
+            }
     
-    //         messageArray.push(
-    //             <div key={i} className='event'>
-    //                 <span className={'player-event'}>{event.from}</span>
-    //                 {message}
-    //             </div>
-    //         );
-    //     }
-    //     return messageArray;
-    // }
+            messageArray.push(
+                <div key={i}>
+                    <span>{event.from}</span>
+                    {message}
+                </div>
+            );
+        }
+        // console.log(messageArray)
+        return messageArray;
+    }
 
     function balanceToNumber(balance) {
         return Number(balance.replaceAll(",", "").replace("$", ""))
@@ -156,7 +157,7 @@ export function Score() {
                 </tr> */}
             </table>
             <div className="white_space"></div>
-            {/* <div>{createMessageArray()}</div> */}
+            <div>{createMessageArray()}</div>
             <div id="searchDiv">
                 <p id="emoji">&#128270;</p><input id="searchBar" type="text" placeholder="search users" />
             </div>
