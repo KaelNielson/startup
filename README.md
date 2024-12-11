@@ -95,3 +95,9 @@ In the near future, backend and frontend system will be created for scores as we
 - [x] **Existing User** - Login a user works now
 - [x] **Credentials** - Users are saved in DB, scores are not yet, but will be soon.
 - [x] **Restrictions** - Can't access scoreboard and game until logged in.
+
+## Websocket Deliverable:
+- [x] **Backend WebScocket Listens** - complete.
+- [x] **Frontend WebSocket Messages** - complete.
+- [x] **WebSocket Data** - complete.
+- [x] **WebSocket Display** - Score page shows when someone creates or deletes a business.
