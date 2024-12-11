@@ -38,7 +38,7 @@ function App() {
         </header>
         <Routes>
           <Route path='/' element={<Login u={user} uS={setUser}/>} exact />
-          <Route path='/game' element={<Game />} />
+          <Route path='/game' element={<Game u={user} uS={setUser}/>} />
           <Route path='/score' element={<Score />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<NotFound />} />
@@ -71,7 +71,7 @@ function App() {
         </header>
         <Routes>
           <Route path='/' element={<Login u={user} uS={setUser}/>} exact />
-          <Route path='/game' element={<Game />} />
+          <Route path='/game' element={<Game u={user} uS={setUser}/>} />
           <Route path='/score' element={<Score />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<NotFound />} />

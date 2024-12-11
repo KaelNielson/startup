@@ -1,7 +1,8 @@
 import React from 'react';
 import "./game.css"
 import { secretKey } from "./apiCall.jsx"
-import { GameEvent, GameNotifier} from "../gameNotifier.js"
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+// import { GameEvent, GameNotifier} from "../gameNotifier.js"
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1)
@@ -53,21 +54,59 @@ class statList {
 
 
 
-export function Game() {
+export function Game(props) {
     const [exists, setExists] = React.useState(false);
     const [name, setName] = React.useState("")
     const [stats, setStats] = React.useState(new statList(0,0,0,0,0,0,0))
     const [weeks, setWeeks] = React.useState(0)
-    const [graphColor, setColor] = React.useState("good-graph-line")
     const [balances, setBalances] = React.useState([0])
     const [pendingEvents, setEvents] = React.useState([])
-    const [points, setPoints] = React.useState("")
     const [showingEvents, setShowing] = React.useState(false)
     const [reports, setReports] = React.useState([])
     const [highestCash, setHighestCash] = React.useState(1)
+    const user = props.u
+    const setUser = props.uS
+
+    const [business, setBusinessState] = React.useState(JSON.parse(localStorage.getItem('business')))
+
+    const setBusiness = (newBusiness) => {
+        setBusinessState(newBusiness)
+        localStorage.setItem('business', JSON.stringify(newBusiness))
+    }
     // const weeksRef = React.useRef(weeks)
 
     // React.useEffect(() => {weeksRef.current = weeks}, [weeks])
+
+    class Business {
+        constructor(name, stats, weeks, balances, pendingEvents, reports, highestCash, user) {
+            this.user = user
+            this.name = name
+            this.stats = stats
+            this.weeks = weeks
+            this.balances = balances
+            this.pendingEvents = pendingEvents
+            this.reports = reports
+            this.highestCash = highestCash
+        }
+    }
+    class row {
+        constructor(name, busName, balance) {
+            this.name = name
+            this.busName = busName
+            this.balance = balance
+        }
+
+        render(placing){
+            return (
+                <tr key={placing}>
+                    <td className="smallerSegments">{placing}</td>
+                    <td className="largerSegments">{this.name}</td>
+                    <td className="largerSegments">{this.busName}</td>
+                    <td className="largerSegments">{this.balance}</td>
+                </tr>
+            )
+        }
+    }
 
     class effect {
         constructor(target, amount) {
@@ -195,7 +234,12 @@ export function Game() {
     let secondEvent = new Event("A stroke of luck?", secondText, [op5, op6])
 
     async function updateScore() {
-        
+        const newScore = new row(user.name, name, stats.balance)
+        await fetch('/api/score', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newScore),
+        });
     }
 
     function definePoints(max) {
@@ -213,19 +257,21 @@ export function Game() {
             setStats(stats.dailyRecalc(setStats))
         }
         setBalances(balances.concat([stats.balance]))
-        console.log(balances)
-        if (balances[-1] < balances[-2]) {
-            setColor("bad-graph-line")
-        } else {
-            setColor("good-graph-line")
-        }
-        console.log(stats.balance)
         if (stats.balance > highestCash) {
             setHighestCash(stats.balance)
         } else if (stats.balance < -1*highestCash) {
             setHighestCash(-1*stats.balance)
         }
+        updateScore()
         // wait(weeks)
+    }
+
+    function setColor() {
+        if (balances[balances.length-1] < balances[balances.length-2]) {
+            return "bad-graph-line"
+        } else {
+            return "good-graph-line"
+        }
     }
 
     function report(ev, op, time) {
@@ -272,15 +318,13 @@ export function Game() {
     }
 
     function stepTwo() {
-        GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.End, '')
+        // GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.End, '')
         setExists(false)
         setName("")
         setStats(new statList(0,0,0,0,0,0,0))
         setWeeks(0)
-        setColor("good-graph-line")
         setBalances([0])
         setEvents([])
-        setPoints("")
         setShowing(false)
         setReports([])
         setHighestCash(1)
@@ -327,7 +371,7 @@ export function Game() {
         if (v === "") {
             document.getElementById("nameInput").value = "You need a business name first."
         } else {
-            GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.Start, v)
+            // GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.Start, v)
             setName(v)
             setStats(new statList(0,0,0,0,0,0,0))
             setExists(true)
@@ -342,7 +386,7 @@ export function Game() {
                 <main>
                     <div>
                         <h1>Business Name: {name}</h1>
-                        <h3>User: {localStorage.getItem('user').name}</h3>
+                        <h3>User: {user.name}</h3>
                     </div>
                     <div className="rows">
                         <div id="infoList" className="items">
@@ -367,7 +411,7 @@ export function Game() {
                                 <svg id="graph" width="175" height="150" viewBox="0 0 175 300">
                                     <polyline className='border-line' points="0,0 0,150 175,150"/>
                                     <polyline className="border-line" points="0,150 0,300"/>
-                                    <polyline className={graphColor} points={definePoints(highestCash)}/>
+                                    <polyline className={setColor()} points={definePoints(highestCash)}/>
                                 </svg>
                                 <span>{weeks}</span>
                             </div>
