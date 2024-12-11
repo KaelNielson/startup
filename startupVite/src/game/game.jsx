@@ -1,6 +1,7 @@
 import React from 'react';
 import "./game.css"
 import { secretKey } from "./apiCall.jsx"
+import { GameEvent, GameNotifier} from "../gameNotifier.js"
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1)
@@ -271,6 +272,7 @@ export function Game() {
     }
 
     function stepTwo() {
+        GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.End, '')
         setExists(false)
         setName("")
         setStats(new statList(0,0,0,0,0,0,0))
@@ -325,6 +327,7 @@ export function Game() {
         if (v === "") {
             document.getElementById("nameInput").value = "You need a business name first."
         } else {
+            GameNotifier.broadcastEvent(localStorage.getItem('user').name, GameEvent.Start, v)
             setName(v)
             setStats(new statList(0,0,0,0,0,0,0))
             setExists(true)
