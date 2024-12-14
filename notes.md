@@ -76,3 +76,50 @@
 ## Vite:
 
   Command to make a new Vite file: npm create vite@latest {name} -- --template react
+
+
+## Final Notes
+    What is the default port for HTTP/HTTPS/SSH? 
+	Port 80, Port 443, and Port 22
+    What does an HTTP status code in the range of 300/400/500 indicate?
+	Redirection Messages, Client Side Errors, and Server Errors
+    What does the HTTP header content-type allow you to do?
+	Define and see the original media type of the return
+    What does a “Secure cookie”/”Http-only cookie”/”Same-site cookie” do? https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+	Only redirect to secure sites, disregard javascript, and disregard redirects(i think)
+    Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /api/document?
+	Express content refers to the get and post stuff that was happening.
+    Given the following Express service code: What does the following front end JavaScript that performs a fetch return?
+	Express content refers to the get and post stuff that was happening.
+    Given the following MongoDB query, select all of the matching documents {name:Mark}
+	MongoDB queries were the findOne stuff we were using to find our users.
+    How should user passwords be stored?
+	Hashed
+    Assuming the following node.js websocket code in the back end, and the following front end websocket code, what will the front end log to the console?
+	-ngl I'm going to fail the question-
+    What is the websocket protocol intended to provide?
+	Communicate in realtime between the server and the clients, allowing for horizontal communciation
+    What do the following acronyms stand for? JSX, JS, AWS, NPM, NVM
+	JavaScript eXtensible markup language, JavaScript, Amazon Web Services, Node Package Manager, Node Version Manager
+    Assuming an HTML document with a body element. What text content will the following React component generate?  The react component will use parameters.
+	-No notes needed-
+    Given a set of React components that include each other, what will be generated
+	-No notes needed-
+    What does a React component with React.useState do?
+	I'm not even going to write notes here because this question is here like three times.
+    What are React Hooks used for?
+	Remembering important data for a react element
+    What does the State Hook/Context Hook/Ref Hook/Effect Hook/Performance Hook do? https://react.dev/reference/react/hooks
+	State Hooks are useState, they re-render the element when they are updated. Context Hooks remember stuff from parents, Ref Hooks keep information, but don't re-render the element, Effect Hooks sync up outside stuff, Performance Hooks reduce unnecessary calculations and re-renders or something.
+    Given React Router code, select statements that are true.
+	React Router stuff refers to navlinks and things
+    What does the package.json file do?
+	User-readable metadata about project.
+    What does the fetch function do?
+	Returns a promise to get stuff from a net resource.
+    What does node.js do?
+	Node.js is the process in place for creating a JavaScript Backend
+    What does pm2 do?
+	Process Manager 2 manages the running of the node.js instances
+    What does Vite do?
+	Vite is a tool used by frontend developers to make fast and optimal applications.
